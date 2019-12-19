@@ -32,7 +32,10 @@ const BuildControls = props => {
         <strong>Price Total: ${props.totalPrice.toFixed(2)}</strong>
       </p>
       {controls}
-      <OrderButton disabled={!props.purchasable}>
+      <OrderButton
+        disabled={!props.purchasable}
+        clicked={props.beginOrder}
+      >
         Order Now
       </OrderButton>
     </Wrapper>

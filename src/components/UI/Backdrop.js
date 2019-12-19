@@ -12,7 +12,7 @@ const StyledBackdrop = styled.div`
 `;
 
 const Backdrop = props =>
-  props.show ? <StyledBackdrop onClick={props.cliked} /> : null;
+  props.show ? <StyledBackdrop onClick={props.clicked} /> : null;
 
 Backdrop.propTypes = {
   clicked: PropTypes.func.isRequired

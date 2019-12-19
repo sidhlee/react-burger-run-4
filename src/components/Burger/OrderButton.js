@@ -37,7 +37,9 @@ const StyledOrderButton = styled.button`
 `;
 
 const OrderButton = props => (
-  <StyledOrderButton {...props}>{props.children}</StyledOrderButton>
+  <StyledOrderButton onClick={props.clicked} {...props}>
+    {props.children}
+  </StyledOrderButton>
 );
 
 export default OrderButton;

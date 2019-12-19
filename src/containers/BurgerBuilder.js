@@ -4,6 +4,9 @@ import Burger from "../components/Burger/Burger";
 import BuildControls from "../components/Burger/BuildControls";
 import * as mock from "../mock";
 
+import Modal from "../components/UI/Modal";
+import OrderSummary from "../components/Burger/OrderSummary";
+
 const Wrapper = styled.div``;
 const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
@@ -16,7 +19,8 @@ const INGREDIENT_PRICES = {
 export class BurgerBuilder extends Component {
   state = {
     ingredients: { ...mock.ingredients },
-    totalPrice: BASE_PRICE
+    totalPrice: BASE_PRICE,
+    ordering: false
   };
 
   updatePurchasable = () => {
@@ -24,6 +28,14 @@ export class BurgerBuilder extends Component {
       (a, b) => a + b
     );
     return totalQty > 0;
+  };
+
+  beginOrder = () => {
+    this.setState({ ordering: true });
+  };
+
+  cancelOrder = () => {
+    this.setState({ ordering: false });
   };
 
   addIngredient = ing => {
@@ -59,6 +71,12 @@ export class BurgerBuilder extends Component {
   render() {
     return (
       <Wrapper>
+        <Modal
+          show={this.state.ordering}
+          closeModal={this.cancelOrder}
+        >
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredients={this.state.ingredients}
@@ -66,6 +84,7 @@ export class BurgerBuilder extends Component {
           removeIngredient={this.removeIngredient}
           totalPrice={this.state.totalPrice}
           purchasable={this.updatePurchasable()}
+          beginOrder={this.beginOrder}
         />
       </Wrapper>
     );
