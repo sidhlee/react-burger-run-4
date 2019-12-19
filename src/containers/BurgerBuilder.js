@@ -38,6 +38,10 @@ export class BurgerBuilder extends Component {
     this.setState({ ordering: false });
   };
 
+  continueOrder = () => {
+    alert("You continued!");
+  };
+
   addIngredient = ing => {
     const qty = this.state.ingredients[ing];
     const updatedIngredients = {
@@ -75,7 +79,11 @@ export class BurgerBuilder extends Component {
           show={this.state.ordering}
           closeModal={this.cancelOrder}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            continueOrder={this.continueOrder}
+            cancelOrder={this.cancelOrder}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls

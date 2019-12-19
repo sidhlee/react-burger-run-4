@@ -27,8 +27,12 @@ const OrderSummary = props => {
       <h3>Your Order</h3>
       <p>A tasty burger with the following ingredients!</p>
       <ListGroup>{ingredientSummary}</ListGroup>
-      <Button btnType="Danger">Cancel</Button>
-      <Button btnType="Success">Continue</Button>
+      <Button btnType="Danger" clicked={props.cancelOrder}>
+        Cancel
+      </Button>
+      <Button btnType="Success" clicked={props.continueOrder}>
+        Continue
+      </Button>
     </Wrapper>
   );
 };
