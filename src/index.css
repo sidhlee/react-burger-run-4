@@ -1,6 +1,8 @@
 :root {
   --dark: #8f5e1e;
   --light: #daa972;
+  --light-gray: #c7c6c6;
+  --yellow: #dad735;
 }
 
 body {

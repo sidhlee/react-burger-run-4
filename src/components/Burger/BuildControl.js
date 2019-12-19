@@ -38,7 +38,7 @@ const StyledButton = styled.button`
   }
   &:disabled,
   &:hover:disabled {
-    filter: opacity(0.5);
+    filter: opacity(0.4) saturate(50%);
     cursor: not-allowed;
   }
 `;

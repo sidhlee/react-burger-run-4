@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BuildControl from "./BuildControl";
+import OrderButton from "./OrderButton";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,7 +26,17 @@ const BuildControls = props => {
     />
   ));
 
-  return <Wrapper>{controls}</Wrapper>;
+  return (
+    <Wrapper>
+      <p>
+        <strong>Price Total: ${props.totalPrice.toFixed(2)}</strong>
+      </p>
+      {controls}
+      <OrderButton disabled={!props.purchasable}>
+        Order Now
+      </OrderButton>
+    </Wrapper>
+  );
 };
 
 export default BuildControls;

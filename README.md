@@ -11,10 +11,11 @@ This is the 4th run of building burger-builder with react and redux.
   4. git push -u origin master.
   5. Go to extensions and search for @builtin git, enable them if not.
   6. VScode's version control menu will work now.
-- Use vscode's version control. Learn workflow of:
+- Uses vscode's version control. Learn workflow of:
   1. make changes
   2. stage changes and commit with message.
   3. push (to the github)
+- Uses styled-components with polished
 
 ## Discovered:
 

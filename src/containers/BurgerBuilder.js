@@ -5,7 +5,7 @@ import BuildControls from "../components/Burger/BuildControls";
 import * as mock from "../mock";
 
 const Wrapper = styled.div``;
-const BASE_PRICE = 3;
+const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
   salad: 0.5,
   bacon: 0.7,
@@ -17,6 +17,13 @@ export class BurgerBuilder extends Component {
   state = {
     ingredients: { ...mock.ingredients },
     totalPrice: BASE_PRICE
+  };
+
+  updatePurchasable = () => {
+    const totalQty = Object.values(this.state.ingredients).reduce(
+      (a, b) => a + b
+    );
+    return totalQty > 0;
   };
 
   addIngredient = ing => {
@@ -57,6 +64,8 @@ export class BurgerBuilder extends Component {
           ingredients={this.state.ingredients}
           addIngredient={this.addIngredient}
           removeIngredient={this.removeIngredient}
+          totalPrice={this.state.totalPrice}
+          purchasable={this.updatePurchasable()}
         />
       </Wrapper>
     );
