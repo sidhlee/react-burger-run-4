@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "../UI/Button";
 
 const ListGroup = styled.ul`
   display: table;
@@ -26,6 +27,8 @@ const OrderSummary = props => {
       <h3>Your Order</h3>
       <p>A tasty burger with the following ingredients!</p>
       <ListGroup>{ingredientSummary}</ListGroup>
+      <Button btnType="Danger">Cancel</Button>
+      <Button btnType="Success">Continue</Button>
     </Wrapper>
   );
 };

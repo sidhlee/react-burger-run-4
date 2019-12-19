@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { disabled } from "../../utils";
+import { disabled, hover } from "../../utils";
 
 const getColorOnTypes = props => {
   switch (props.btnType) {
@@ -20,10 +20,12 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   color: ${getColorOnTypes};
+  font: inherit;
   outline: none;
   cursor: pointer;
   font: inherit bold;
   ${disabled}
+  ${hover}
 `;
 
 const Button = props => (
