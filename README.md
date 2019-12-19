@@ -21,3 +21,10 @@ This is the 4th run of building burger-builder with react and redux.
 - serviceWorker can (could: in 2018 ) do harm:
   - https://larsgraubner.com/service-workers-considered-harmful/
   - https://www.lucidchart.com/techblog/2019/01/22/what-you-should-know-before-making-a-service-worker/
+- The correct way to import lodash (with Benchmark)
+  - https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark/
+  - https://stackoverflow.com/questions/35250500/correct-way-to-import-lodash
+
+#TODO:
+
+- Play around with burger ingredient css to understand each property value;

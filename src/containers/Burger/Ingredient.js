@@ -39,9 +39,9 @@ const seeds1 = css`
     height: 100%;
     background-color: white;
     left: -170%;
-    top: -260%;
+    top: -90%;
     border-radius: 40%;
-    transform: rotate(60deg);
+    transform: rotate(-40deg);
     box-shadow: inset -1px 2px #c9c9c9;
   }
   &:before {
@@ -51,13 +51,14 @@ const seeds1 = css`
     height: 100%;
     background-color: white;
     left: 180%;
-    top: 90%;
+    top: -150%;
     border-radius: 40%;
+    transform: rotate(20deg);
     box-shadow: inset -1px -3px #c9c9c9;
   }
 `;
 
-const seed2 = css`
+const seeds2 = css`
   position: absolute;
   left: 64%;
   top: 50%;
@@ -116,30 +117,28 @@ const StyledIngredient = styled.div`
   ${props => {
     switch (props.type) {
       case "bread-top":
-        breadTop;
-        break;
+        return breadTop;
+      case "seeds1":
+        return seeds1;
+      case "seeds2":
+        return seeds2;
       case "bread-bottom":
-        breadBottom;
-        break;
+        return breadBottom;
       case "salad":
-        salad;
-        break;
+        return salad;
       case "bacon":
-        bacon;
-        break;
+        return bacon;
       case "cheese":
-        cheese;
-        break;
+        return cheese;
       case "beef":
-        beef;
-        break;
+        return beef;
       default:
-        null;
+        return null;
     }
   }}
 `;
 
-const Ingredient = props => <StyledIngredient />;
+const Ingredient = props => <StyledIngredient {...props} />;
 
 Ingredient.propTypes = {
   type: PropTypes.string.isRequired
