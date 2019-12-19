@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Burger from "./Burger/Burger";
+import Burger from "../components/Burger/Burger";
+import BuildControls from "../components/Burger/BuildControls";
 import * as mock from "../mock";
 
 const Wrapper = styled.div``;
@@ -14,7 +15,7 @@ export class BurgerBuilder extends Component {
     return (
       <Wrapper>
         <Burger ingredients={this.state.ingredients} />
-        <div>Control</div>
+        <BuildControls />
       </Wrapper>
     );
   }

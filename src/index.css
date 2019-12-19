@@ -1,3 +1,8 @@
+:root {
+  --dark: #8f5e1e;
+  --light: #daa972;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",

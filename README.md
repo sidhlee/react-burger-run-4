@@ -25,6 +25,11 @@ This is the 4th run of building burger-builder with react and redux.
   - https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark/
   - https://stackoverflow.com/questions/35250500/correct-way-to-import-lodash
 - React displaces components nested deep in arrays with no prblem.
+- Use `filter` css property to lighten/darken UIs.
+  - `filter: brighness(0.9)` in css darkens element.
+  - `filter: opacity(0.5)` is great for disabled style.
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+
 #TODO:
 
 - Play around with burger ingredient css to understand each property value;
