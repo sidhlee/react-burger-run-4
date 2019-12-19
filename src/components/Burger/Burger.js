@@ -5,7 +5,7 @@ import { flatten } from "lodash";
 
 const StyledBurger = styled.div`
   width: 90%;
-  margin: auto;
+  margin: 0.8em auto;
   height: 250px;
   overflow: auto;
   display: flex;

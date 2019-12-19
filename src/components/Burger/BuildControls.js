@@ -29,7 +29,7 @@ const BuildControls = props => {
   return (
     <Wrapper>
       <p>
-        <strong>Price Total: ${props.totalPrice.toFixed(2)}</strong>
+        <strong>Total Price: ${props.totalPrice.toFixed(2)}</strong>
       </p>
       {controls}
       <OrderButton
