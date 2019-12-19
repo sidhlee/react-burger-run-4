@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { disabled } from "../../utils";
 
 const StyledBuildControl = styled.div`
   display: flex;
@@ -36,11 +37,7 @@ const StyledButton = styled.button`
   &:active {
     filter: brightness(0.9);
   }
-  &:disabled,
-  &:hover:disabled {
-    filter: opacity(0.4) saturate(50%);
-    cursor: not-allowed;
-  }
+  ${disabled}
 `;
 
 const BuildControl = props => (

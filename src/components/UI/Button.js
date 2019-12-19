@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { disabled } from "../../utils";
 
 const getColorOnTypes = props => {
   switch (props.btnType) {
@@ -22,9 +23,7 @@ const StyledButton = styled.button`
   outline: none;
   cursor: pointer;
   font: inherit bold;
-  &:disabled {
-    filter: ;
-  }
+  ${disabled}
 `;
 
 const Button = props => (
