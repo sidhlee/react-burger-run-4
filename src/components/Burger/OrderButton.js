@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { disabled } from "../../utils";
 
 const enable = keyframes`
   0% {
@@ -12,6 +13,7 @@ const enable = keyframes`
     transform: scale(1);
   }
 `;
+
 const StyledOrderButton = styled.button`
   background-color: var(--yellow);
   outline: none;
@@ -27,10 +29,8 @@ const StyledOrderButton = styled.button`
     background-color: #a0db41;
     border: 1px solid var(--dark);
   }
-  &:disabled {
-    filter: opacity(0.8) saturate(10%);
-    cursor: not-allowed;
-  }
+  ${disabled}
+
   &:not(:disabled) {
     animation: ${enable} 0.3s linear;
   }
