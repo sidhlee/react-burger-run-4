@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Ingredient from "./Ingredient";
+import { flatten } from "lodash";
 
 const StyledBurger = styled.div`
   width: 90%;
@@ -28,11 +29,11 @@ const StyledBurger = styled.div`
 const mapIngredients = ingredients => {
   const ingNames = Object.keys(ingredients);
   const arraysOfIngComponents = ingNames.map(name =>
-    [...Array(ingredients[name])].map(emptyElement => (
-      <Ingredient key={name} type={name} />
+    [...Array(ingredients[name])].map((emptyElement, i) => (
+      <Ingredient key={name + i} type={name} />
     ))
   );
-  return arraysOfIngComponents;
+  return flatten(arraysOfIngComponents);
 };
 
 const Burger = props => {
