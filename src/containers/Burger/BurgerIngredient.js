@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 
 const breadTop = css`
   height: 20%;
@@ -139,5 +140,9 @@ const StyledIngredient = styled.div`
 `;
 
 const Ingredient = props => <StyledIngredient />;
+
+Ingredient.propTypes = {
+  type: PropTypes.string.isRequired
+};
 
 export default Ingredient;
