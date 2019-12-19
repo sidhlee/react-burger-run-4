@@ -34,7 +34,7 @@ const StyledButton = styled.button`
   }};
   &:hover,
   &:active {
-    filter: brightness(0.85);
+    filter: brightness(0.9);
   }
   &:disabled,
   &:hover:disabled {
@@ -46,8 +46,16 @@ const StyledButton = styled.button`
 const BuildControl = props => (
   <StyledBuildControl>
     <StyledLabel>{props.label}</StyledLabel>
-    <StyledButton type="less">Less</StyledButton>
-    <StyledButton type="more">More</StyledButton>
+    <StyledButton
+      type="less"
+      onClick={props.removeIngredient}
+      disabled={props.disabled}
+    >
+      Less
+    </StyledButton>
+    <StyledButton type="more" onClick={props.addIngredient}>
+      More
+    </StyledButton>
   </StyledBuildControl>
 );
 

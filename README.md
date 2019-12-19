@@ -27,7 +27,7 @@ This is the 4th run of building burger-builder with react and redux.
 - React displaces components nested deep in arrays with no prblem.
 - Use `filter` css property to lighten/darken UIs.
   - `filter: brighness(0.9)` in css darkens element.
-  - `filter: opacity(0.5)` is great for disabled style.
+  - `filter: opacity(0.5)` is great for styling disabled buttons.
   - https://developer.mozilla.org/en-US/docs/Web/CSS/filter
 
 #TODO:

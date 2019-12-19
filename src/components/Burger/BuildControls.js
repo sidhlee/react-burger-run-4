@@ -14,9 +14,15 @@ const Wrapper = styled.div`
 `;
 
 const BuildControls = props => {
-  const controlItems = ["salad", "bacon", "cheese", "meat"];
+  const controlItems = ["salad", "bacon", "cheese", "beef"];
   const controls = controlItems.map(item => (
-    <BuildControl key={item} label={item} />
+    <BuildControl
+      key={item}
+      label={item}
+      addIngredient={() => props.addIngredient(item)}
+      removeIngredient={() => props.removeIngredient(item)}
+      disabled={props.ingredients[item] <= 0}
+    />
   ));
 
   return <Wrapper>{controls}</Wrapper>;
