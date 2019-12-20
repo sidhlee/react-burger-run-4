@@ -12,11 +12,20 @@ const StyledContent = styled.main`
 `;
 
 class Layout extends Component {
+  state = {
+    sideDrawerOpened: true
+  };
+  closeSideDrawer = () => {
+    this.setState({ sideDrawerOpened: false });
+  };
   render() {
     return (
       <StyledLayout>
         <Toolbar />
-        <SideDrawer />
+        <SideDrawer
+          closeSideDrawer={this.closeSideDrawer}
+          sideDrawerOpened={this.state.sideDrawerOpened}
+        />
         <StyledContent>{this.props.children}</StyledContent>
       </StyledLayout>
     );

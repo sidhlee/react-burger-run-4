@@ -19,7 +19,7 @@ const StyledToolbar = styled.header`
 `;
 
 const Toolbar = props => (
-  <StyledToolbar>
+  <StyledToolbar {...props}>
     <div>MENU</div>
     <Logo />
     <NavigationItems desktopOnly />

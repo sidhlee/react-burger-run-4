@@ -34,9 +34,12 @@ const LogoWrapper = styled.div`
 
 const SideDrawer = props => (
   <>
-    <Backdrop show={true} clicked={props.closeSideDrawer} />
+    <Backdrop
+      show={props.sideDrawerOpened}
+      clicked={props.closeSideDrawer}
+    />
     <StyledSideDrawer
-      sideDrawerOpened={true}
+      sideDrawerOpened={props.sideDrawerOpened}
       {...props}
       Onclick={props.closeSideDrawer}
     >
