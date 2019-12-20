@@ -21,7 +21,7 @@ const StyledToolbar = styled.header`
 
 const Toolbar = props => (
   <StyledToolbar {...props}>
-    <DrawerToggle />
+    <DrawerToggle {...props} />
     <Logo />
     <NavigationItems desktopOnly />
   </StyledToolbar>
