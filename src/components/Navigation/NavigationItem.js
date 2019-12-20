@@ -8,7 +8,7 @@ const StyledNavigationItem = styled.li`
   display: block;
   width: 100%;
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     margin: 0;
     display: flex;
     align-items: center;
@@ -40,7 +40,7 @@ const StyledLink = styled.a`
   }
   ${props => (props.active ? activeStyleMobile : null)}
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     color: #bbb;
     height: 70%;
     padding: 10px 4px;

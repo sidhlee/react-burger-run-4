@@ -21,7 +21,7 @@ const StyledSideDrawer = styled.div`
   transform: ${props =>
     props.show ? "translateX(0)" : "translateX(-100%)"};
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     display: none;
   }
   text-align: left;

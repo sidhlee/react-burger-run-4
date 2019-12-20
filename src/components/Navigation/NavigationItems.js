@@ -11,7 +11,7 @@ const StyledNavigationItems = styled.ul`
   align-items: center;
   list-style: none;
 
-  @media (min-width: 500px) {
+  @media (min-width: 576px) {
     flex-direction: row;
     display: flex;
   }

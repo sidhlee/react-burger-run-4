@@ -13,15 +13,20 @@ const StyledContent = styled.main`
 
 class Layout extends Component {
   state = {
-    sideDrawerOpened: true
+    sideDrawerOpened: false
   };
   closeSideDrawer = () => {
     this.setState({ sideDrawerOpened: false });
   };
+  toggleSideDrawer = () => {
+    this.setState(prevState => ({
+      sideDrawerOpened: !prevState.sideDrawerOpened
+    }));
+  };
   render() {
     return (
       <StyledLayout>
-        <Toolbar />
+        <Toolbar toggleSideDrawer={this.toggleSideDrawer} />
         <SideDrawer
           closeSideDrawer={this.closeSideDrawer}
           sideDrawerOpened={this.state.sideDrawerOpened}

@@ -16,11 +16,14 @@ const Wrapper = styled.div`
   &:hover {
     transform: rotate(0.5turn);
   }
+  @media (min-width: 576px) {
+    display: none;
+  }
 `;
 
 const DrawerToggle = props => (
   <Wrapper Onclick={props.clicked}>
-    <StyledDrawerToggle onClick={props.toggleDrawer} />
+    <StyledDrawerToggle onClick={props.toggleSideDrawer} />
   </Wrapper>
 );
 
