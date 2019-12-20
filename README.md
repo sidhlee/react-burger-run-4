@@ -30,6 +30,7 @@ This is the 4th run of building burger-builder with react and redux.
   - `filter: brighness(0.9)` in css darkens element.
   - `filter: opacity(0.5)` is great for styling disabled buttons.
   - https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+  - setting `margin-left(right): auto` on child element inside flex-box will affect how sibling elements are aligned.
 
 #TODO:
 
