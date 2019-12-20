@@ -31,6 +31,7 @@ const StyledLink = styled.a`
   color: var(--darker);
   text-decoration: none;
   width: 100%;
+  margin-bottom: 10px;
   box-sizing: border-box;
   display: block;
   &:active,

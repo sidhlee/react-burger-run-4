@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Toolbar from "../components/Navigation/Toolbar";
+import SideDrawer from "../components/Navigation/SideDrawer";
 
 const StyledLayout = styled.div`
   text-align: center;
@@ -15,6 +16,7 @@ class Layout extends Component {
     return (
       <StyledLayout>
         <Toolbar />
+        <SideDrawer />
         <StyledContent>{this.props.children}</StyledContent>
       </StyledLayout>
     );

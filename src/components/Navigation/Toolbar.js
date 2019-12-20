@@ -15,14 +15,14 @@ const StyledToolbar = styled.header`
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
-  z-index: 90;
+  z-index: var(--z-index-Toolbar);
 `;
 
 const Toolbar = props => (
   <StyledToolbar>
     <div>MENU</div>
     <Logo />
-    <NavigationItems />
+    <NavigationItems desktopOnly />
   </StyledToolbar>
 );
 

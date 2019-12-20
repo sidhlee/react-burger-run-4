@@ -1,4 +1,5 @@
 :root {
+  /* colors */
   --darker: #7f3608;
   --dark: #8f5e1e;
   --light: #daa972;
@@ -8,6 +9,11 @@
   --success: #5c9210;
   --danger: #944317;
   --light-blue: #40a4c8;
+  /* z-indexs */
+  --z-index-SideDrawer: 200;
+  --z-index-Backdrop: 100;
+  --z-index-Toolbar: 90;
+  --z-index-Modal: 500;
 }
 
 body {

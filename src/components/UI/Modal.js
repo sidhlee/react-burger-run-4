@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Backdrop from "./Backdrop";
 
 const StyledModal = styled.div`
-  z-index: 500;
+  z-index: var(--z-index-Modal);
   position: fixed;
   width: 70%;
   left: 15%;

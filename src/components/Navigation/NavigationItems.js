@@ -4,7 +4,7 @@ import NavigationItem from "./NavigationItem";
 
 const StyledNavigationItems = styled.ul`
   height: 100%;
-  display: flex;
+  display: ${props => (props.desktopOnly ? "none" : "flex")};
   flex-direction: column;
   margin: 0;
   padding: 0;
@@ -13,11 +13,12 @@ const StyledNavigationItems = styled.ul`
 
   @media (min-width: 500px) {
     flex-direction: row;
+    display: flex;
   }
 `;
 
 const NavigationItems = props => (
-  <StyledNavigationItems>
+  <StyledNavigationItems {...props}>
     <NavigationItem active ink="/">
       Burger Builder
     </NavigationItem>
