@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   &:hover {
     transform: rotate(0.5turn);
   }
+  /* don't need toggler on larger devices */
   @media (min-width: 576px) {
     display: none;
   }
