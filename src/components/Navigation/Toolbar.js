@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Logo from "../Logo";
 import NavigationItems from "./NavigationItems";
+import DrawerToggle from "./DrawerToggle";
 
 const StyledToolbar = styled.header`
   height: 58px;
@@ -20,7 +21,7 @@ const StyledToolbar = styled.header`
 
 const Toolbar = props => (
   <StyledToolbar {...props}>
-    <div>MENU</div>
+    <DrawerToggle />
     <Logo />
     <NavigationItems desktopOnly />
   </StyledToolbar>

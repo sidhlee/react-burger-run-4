@@ -8,6 +8,8 @@ const Wrapper = styled.div`
   padding: 5px;
   box-sizing: border-box;
   border-radius: 5px;
+  margin-left: auto;
+  margin-right: 1em;
 `;
 const StyledLogo = styled.img`
   height: 100%;

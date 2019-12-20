@@ -19,7 +19,7 @@ const StyledSideDrawer = styled.div`
   /* animated toggle */
   transition: transform 0.3s ease-out;
   transform: ${props =>
-    props.sideDrawerOpened ? "translateX(0)" : "translateX(-100%)"};
+    props.show ? "translateX(0)" : "translateX(-100%)"};
 
   @media (min-width: 500px) {
     display: none;
@@ -39,7 +39,7 @@ const SideDrawer = props => (
       clicked={props.closeSideDrawer}
     />
     <StyledSideDrawer
-      sideDrawerOpened={props.sideDrawerOpened}
+      show={props.sideDrawerOpened}
       {...props}
       Onclick={props.closeSideDrawer}
     >
