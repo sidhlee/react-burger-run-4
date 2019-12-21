@@ -29,6 +29,13 @@ export class BurgerBuilder extends Component {
     loading: false
   };
 
+  componentDidMount() {
+    this.setState({ loading: true });
+    axios.get("/ingredients.json").then(res => {
+      this.setState({ ingredients: res.data });
+    });
+  }
+
   updatePurchasable = () => {
     const totalQty = Object.values(this.state.ingredients).reduce(
       (a, b) => a + b
@@ -45,32 +52,31 @@ export class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    this.setState({ loading: true }, () => {
-      const order = {
-        ingredients: this.state.ingredients,
-        totalPrice: this.state.totalPrice,
-        customer: {
-          name: "John",
-          address: {
-            street: "test st. 1",
-            zipCode: "12345",
-            country: "Japan"
-          },
-          email: "test@test.com"
+    this.setState({ loading: true });
+    const order = {
+      ingredients: this.state.ingredients,
+      totalPrice: this.state.totalPrice,
+      customer: {
+        name: "John",
+        address: {
+          street: "test st. 1",
+          zipCode: "12345",
+          country: "Japan"
         },
-        deliveryMethod: "fastest"
-      };
-      axios
-        .post("/orders.jso", order)
-        .then(res => {
-          this.setState({ ordering: false, loading: false });
-          console.log(res);
-        })
-        .catch(err => {
-          this.setState({ ordering: false, loading: false });
-          console.log(err);
-        });
-    });
+        email: "test@test.com"
+      },
+      deliveryMethod: "fastest"
+    };
+    axios
+      .post("/orders.json", order)
+      .then(res => {
+        this.setState({ ordering: false, loading: false });
+        console.log(res);
+      })
+      .catch(err => {
+        this.setState({ ordering: false, loading: false });
+        console.log(err);
+      });
   };
 
   addIngredient = ing => {
