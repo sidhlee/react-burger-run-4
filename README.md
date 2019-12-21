@@ -16,6 +16,9 @@ This is the 4th run of building burger-builder with react and redux.
   2. stage changes and commit with message.
   3. push (to the github)
 - Uses styled-components with polished
+- Separate spinner from Modal
+  - with its own Backdrop
+  - with the highest z-index (higher than Modal)
 
 ## Discovered:
 
