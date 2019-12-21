@@ -7,6 +7,8 @@ import * as mock from "../mock";
 import Modal from "../components/UI/Modal";
 import OrderSummary from "../components/Burger/OrderSummary";
 
+import axios from "../axios-orders";
+
 const Wrapper = styled.div``;
 const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
@@ -39,7 +41,27 @@ export class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    alert("You continued!");
+    const order = {
+      ingredients: this.state.ingredients,
+      totalPrice: this.state.totalPrice,
+      customer: {
+        name: "John",
+        address: {
+          street: "test st. 1",
+          zipCode: "12345",
+          country: "Japan"
+        },
+        email: "test@test.com"
+      },
+      deliveryMethod: "fastest"
+    };
+    axios
+      .post("/orders.json", order)
+      .then(res => {
+        this.setState({ ordering: false });
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   };
 
   addIngredient = ing => {
