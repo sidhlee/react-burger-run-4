@@ -26,14 +26,22 @@ export class BurgerBuilder extends Component {
     ingredients: { ...mock.ingredients },
     totalPrice: BASE_PRICE,
     ordering: false,
-    loading: false
+    loading: false,
+    fetchError: false
   };
 
   componentDidMount() {
     this.setState({ loading: true });
-    axios.get("/ingredients.json").then(res => {
-      this.setState({ ingredients: res.data });
-    });
+    axios
+      .get("/ingredients.jso")
+      .then(res => {
+        console.log("then!");
+        this.setState({ ingredients: res.data, loading: false });
+      })
+      .catch(err => {
+        console.log("catch!");
+        this.setState({ loading: false, fetchError: true });
+      });
   }
 
   updatePurchasable = () => {
@@ -74,7 +82,10 @@ export class BurgerBuilder extends Component {
         console.log(res);
       })
       .catch(err => {
-        this.setState({ ordering: false, loading: false });
+        this.setState({
+          ordering: false,
+          loading: false
+        });
         console.log(err);
       });
   };
@@ -110,6 +121,24 @@ export class BurgerBuilder extends Component {
   };
 
   render() {
+    const burgerAndControls = this.state.fetchError ? (
+      // TODO: why <p> doens't work with marginTop style here? other styles like color work though.
+      <div style={{ marginTop: "10em" }}>
+        Ingredients cannot be loaded from the server.
+      </div>
+    ) : (
+      <>
+        <Burger ingredients={this.state.ingredients} />
+        <BuildControls
+          ingredients={this.state.ingredients}
+          addIngredient={this.addIngredient}
+          removeIngredient={this.removeIngredient}
+          totalPrice={this.state.totalPrice}
+          purchasable={this.updatePurchasable()}
+          beginOrder={this.beginOrder}
+        />
+      </>
+    );
     return (
       <Wrapper>
         {this.state.loading && <Spinner />}
@@ -124,15 +153,7 @@ export class BurgerBuilder extends Component {
             totalPrice={this.state.totalPrice}
           />
         </Modal>
-        <Burger ingredients={this.state.ingredients} />
-        <BuildControls
-          ingredients={this.state.ingredients}
-          addIngredient={this.addIngredient}
-          removeIngredient={this.removeIngredient}
-          totalPrice={this.state.totalPrice}
-          purchasable={this.updatePurchasable()}
-          beginOrder={this.beginOrder}
-        />
+        {burgerAndControls}
       </Wrapper>
     );
   }
