@@ -15,6 +15,7 @@ class Layout extends Component {
   state = {
     sideDrawerOpened: false
   };
+
   closeSideDrawer = () => {
     this.setState({ sideDrawerOpened: false });
   };
@@ -31,7 +32,9 @@ class Layout extends Component {
           closeSideDrawer={this.closeSideDrawer}
           sideDrawerOpened={this.state.sideDrawerOpened}
         />
-        <StyledContent>{this.props.children}</StyledContent>
+        {this.state.show && (
+          <StyledContent>{this.props.children}</StyledContent>
+        )}
       </StyledLayout>
     );
   }
