@@ -9,11 +9,13 @@
   --success: #5c9210;
   --danger: #944317;
   --light-blue: #40a4c8;
+  --spinner: white;
   /* z-indexs */
   --z-index-SideDrawer: 200;
   --z-index-Backdrop: 100;
   --z-index-Toolbar: 90;
   --z-index-Modal: 500;
+  --z-index-Spinner: 600;
 }
 
 body {

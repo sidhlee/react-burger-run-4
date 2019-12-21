@@ -28,7 +28,10 @@ const StyledModal = styled.div`
 class Modal extends Component {
   // don't update Modal and its children when users can't see it.
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.show !== this.props.show;
+    const trueOrFalse =
+      nextProps.show !== this.props.show ||
+      nextProps.children !== this.props.children;
+    return trueOrFalse;
   }
 
   render() {

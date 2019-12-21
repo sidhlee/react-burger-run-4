@@ -8,6 +8,7 @@ import Modal from "../components/UI/Modal";
 import OrderSummary from "../components/Burger/OrderSummary";
 
 import axios from "../axios-orders";
+import Spinner from "../components/UI/Spinner/Spinner";
 
 const Wrapper = styled.div``;
 const BASE_PRICE = 4.99;
@@ -22,7 +23,8 @@ export class BurgerBuilder extends Component {
   state = {
     ingredients: { ...mock.ingredients },
     totalPrice: BASE_PRICE,
-    ordering: false
+    ordering: false,
+    loading: false
   };
 
   updatePurchasable = () => {
@@ -41,27 +43,32 @@ export class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    const order = {
-      ingredients: this.state.ingredients,
-      totalPrice: this.state.totalPrice,
-      customer: {
-        name: "John",
-        address: {
-          street: "test st. 1",
-          zipCode: "12345",
-          country: "Japan"
+    this.setState({ loading: true }, () => {
+      const order = {
+        ingredients: this.state.ingredients,
+        totalPrice: this.state.totalPrice,
+        customer: {
+          name: "John",
+          address: {
+            street: "test st. 1",
+            zipCode: "12345",
+            country: "Japan"
+          },
+          email: "test@test.com"
         },
-        email: "test@test.com"
-      },
-      deliveryMethod: "fastest"
-    };
-    axios
-      .post("/orders.json", order)
-      .then(res => {
-        this.setState({ ordering: false });
-        console.log(res);
-      })
-      .catch(err => console.log(err));
+        deliveryMethod: "fastest"
+      };
+      axios
+        .post("/orders.json", order)
+        .then(res => {
+          this.setState({ ordering: false, loading: false });
+          console.log(res);
+        })
+        .catch(err => {
+          this.setState({ ordering: false, loading: false });
+          console.log(err);
+        });
+    });
   };
 
   addIngredient = ing => {
@@ -95,19 +102,22 @@ export class BurgerBuilder extends Component {
   };
 
   render() {
+    const modal = this.state.loading ? (
+      <Spinner />
+    ) : (
+      <Modal show={this.state.ordering} closeModal={this.cancelOrder}>
+        <OrderSummary
+          ingredients={this.state.ingredients}
+          continueOrder={this.continueOrder}
+          cancelOrder={this.cancelOrder}
+          totalPrice={this.state.totalPrice}
+        />
+      </Modal>
+    );
+
     return (
       <Wrapper>
-        <Modal
-          show={this.state.ordering}
-          closeModal={this.cancelOrder}
-        >
-          <OrderSummary
-            ingredients={this.state.ingredients}
-            continueOrder={this.continueOrder}
-            cancelOrder={this.cancelOrder}
-            totalPrice={this.state.totalPrice}
-          />
-        </Modal>
+        {modal}
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredients={this.state.ingredients}
