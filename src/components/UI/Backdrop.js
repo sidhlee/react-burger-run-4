@@ -15,7 +15,8 @@ const Backdrop = props =>
   props.show ? <StyledBackdrop onClick={props.clicked} /> : null;
 
 Backdrop.propTypes = {
-  clicked: PropTypes.func.isRequired
+  show: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+    .isRequired
 };
 
 export default Backdrop;
