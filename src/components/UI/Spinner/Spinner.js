@@ -13,7 +13,7 @@ const StyledSpinner = styled.div`
 
 const Spinner = props => (
   <>
-    <Backdrop show="true" />
+    <Backdrop show="true" z={550} />
     <StyledSpinner>
       <div className={classes.loader}>Loading...</div>;
     </StyledSpinner>

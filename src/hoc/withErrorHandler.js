@@ -13,8 +13,25 @@ const withErrorHandler = (C, axios) => {
         return req; // return req (it's a middleware)
       });
       axios.interceptors.response.use(null, error => {
-        console.log(error);
-        this.setState({ error });
+        let errMsg;
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          errMsg = [
+            error.response.data,
+            error.response.status,
+            error.response.headers
+          ];
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          errMsg = error.message;
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          errMsg = error.message;
+        }
+        this.setState({ error: errMsg });
       });
     }
 
@@ -28,7 +45,7 @@ const withErrorHandler = (C, axios) => {
             show={this.state.error}
             clicked={this.closeErrorModal}
           >
-            {this.state.error && this.state.error.message}
+            {this.state.error && this.state.error}
           </Modal>
           <C {...this.props} />
         </>

@@ -104,22 +104,20 @@ export class BurgerBuilder extends Component {
   };
 
   render() {
-    const modal = this.state.loading ? (
-      <Spinner />
-    ) : (
-      <Modal show={this.state.ordering} closeModal={this.cancelOrder}>
-        <OrderSummary
-          ingredients={this.state.ingredients}
-          continueOrder={this.continueOrder}
-          cancelOrder={this.cancelOrder}
-          totalPrice={this.state.totalPrice}
-        />
-      </Modal>
-    );
-
     return (
       <Wrapper>
-        {modal}
+        {this.state.loading && <Spinner />}
+        <Modal
+          show={this.state.ordering}
+          closeModal={this.cancelOrder}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            continueOrder={this.continueOrder}
+            cancelOrder={this.cancelOrder}
+            totalPrice={this.state.totalPrice}
+          />
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredients={this.state.ingredients}

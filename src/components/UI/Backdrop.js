@@ -6,11 +6,14 @@ const StyledBackdrop = styled.div`
   height: 100%;
   position: fixed;
   top: 0;
-  z-index: var(--z-index-Backdrop);
+  z-index: ${props =>
+    props.z ? props.z : "var(--z-index-Backdrop)"};
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const Backdrop = props =>
-  props.show ? <StyledBackdrop onClick={props.clicked} /> : null;
+  props.show ? (
+    <StyledBackdrop z={props.z} onClick={props.clicked} />
+  ) : null;
 
 export default Backdrop;
