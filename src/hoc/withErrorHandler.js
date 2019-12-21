@@ -43,7 +43,7 @@ const withErrorHandler = (C, axios) => {
         <>
           <Modal
             show={this.state.error}
-            clicked={this.closeErrorModal}
+            closeModal={this.closeErrorModal}
           >
             {this.state.error && this.state.error}
           </Modal>
