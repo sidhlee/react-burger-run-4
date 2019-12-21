@@ -34,6 +34,10 @@ This is the 4th run of building burger-builder with react and redux.
   - `filter: opacity(0.5)` is great for styling disabled buttons.
   - https://developer.mozilla.org/en-US/docs/Web/CSS/filter
   - setting `margin-left(right): auto` on child element inside flex-box will affect how sibling elements are aligned.
+- If you want to take truthy|falsey value for a state property, don't type-check it (e.g. with propTypes). That way, it can take:
+  - true|false
+  - 1|0
+  - obj|null
 
 #TODO:
 
