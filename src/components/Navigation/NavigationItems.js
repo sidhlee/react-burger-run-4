@@ -22,7 +22,7 @@ const NavigationItems = props => (
     <NavigationItem active ink="/">
       Burger Builder
     </NavigationItem>
-    <NavigationItem link="/">Check Out</NavigationItem>
+    <NavigationItem link="/orders">Orders</NavigationItem>
   </StyledNavigationItems>
 );
 
