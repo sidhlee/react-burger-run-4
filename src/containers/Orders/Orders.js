@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "../../axios-orders";
+import withErrorHandler from "../../hoc/withErrorHandler";
 
 const StyledOrders = styled.div``;
 
@@ -9,4 +11,4 @@ class Orders extends Component {
   }
 }
 
-export default Orders;
+export default withErrorHandler(Orders, axios);

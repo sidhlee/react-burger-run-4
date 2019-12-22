@@ -3,6 +3,8 @@ import styled from "styled-components";
 import CheckoutSummary from "../../components/CheckoutSummary";
 import { Route } from "react-router-dom";
 import ContactData from "./ContactData";
+import axios from "../../axios-orders";
+import withErrorHandler from "../../hoc/withErrorHandler";
 
 const StyledCheckout = styled.div``;
 
@@ -59,4 +61,4 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+export default withErrorHandler(Checkout, axios);
