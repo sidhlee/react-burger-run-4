@@ -8,6 +8,8 @@ function App() {
   return (
     <div>
       <Layout>
+        {/* rendering with children element is recommended
+        over using component or render prop */}
         <Route path="/" exact>
           <BurgerBuilder />
         </Route>
