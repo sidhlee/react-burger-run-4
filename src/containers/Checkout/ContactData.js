@@ -41,6 +41,7 @@ class ContactData extends Component {
       .then(res => {
         this.setState({ loading: false });
         console.log(res);
+        this.props.history.push("/");
       })
       .catch(err => {
         this.setState({
