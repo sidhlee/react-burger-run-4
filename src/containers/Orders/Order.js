@@ -20,19 +20,22 @@ const StyledIngredientSpan = styled.span`
   padding: 2px 5px;
 `;
 const Order = props => {
-  const ingredientsSpans = Object.entries(props.ingredients).map(
-    ([ing, qty]) => (
-      <StyledIngredientSpan key={ing}>
-        {ing}({qty})
-      </StyledIngredientSpan>
-    )
-  );
+  const ingredientsSpans = props.ingredients
+    ? Object.entries(props.ingredients).map(([ing, qty]) => (
+        <StyledIngredientSpan key={ing}>
+          {ing}({qty})
+        </StyledIngredientSpan>
+      ))
+    : null;
 
   return (
     <StyledOrder>
       <p>Ingredients: {ingredientsSpans}</p>
       <p>
-        Price: <strong>${props.totalPrice.toFixed(2)}</strong>
+        Price:{" "}
+        <strong>
+          ${props.totalPrice && props.totalPrice.toFixed(2)}
+        </strong>
       </p>
     </StyledOrder>
   );

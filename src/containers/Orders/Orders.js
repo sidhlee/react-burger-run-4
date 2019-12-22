@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "../../axios-orders";
 import withErrorHandler from "../../hoc/withErrorHandler";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 import Order from "./Order";
 
@@ -11,35 +12,42 @@ const StyledOrders = styled.div`
 
 class Orders extends Component {
   state = {
-    orders: [
-      {
-        ingredients: {
-          salad: 1,
-          bacon: 1,
-          cheese: 1,
-          beef: 1
-        },
-        totalPrice: 5
-      }
-    ]
+    orders: [],
+    loading: true
   };
 
+  componentDidMount() {
+    axios
+      .get("/orders.json")
+      .then(res => {
+        const orders = Object.entries(res.data).map(
+          ([id, order]) => ({
+            id,
+            ...order
+          })
+        );
+        this.setState({ orders, loading: false });
+      })
+      .catch(err => {
+        this.setState({ loading: false });
+      });
+  }
+
   render() {
+    const orders = this.state.loading
+      ? null
+      : this.state.orders.map(order => (
+          <Order
+            key={order.id}
+            ingredients={order.ingredients}
+            totalPrice={order.totalPrice}
+          />
+        ));
     return (
-      <StyledOrders>
-        <Order
-          ingredients={this.state.orders[0].ingredients}
-          totalPrice={this.state.orders[0].totalPrice}
-        />
-        <Order
-          ingredients={this.state.orders[0].ingredients}
-          totalPrice={this.state.orders[0].totalPrice}
-        />
-        <Order
-          ingredients={this.state.orders[0].ingredients}
-          totalPrice={this.state.orders[0].totalPrice}
-        />
-      </StyledOrders>
+      <>
+        {this.loading && <Spinner show={this.loading} />}
+        <StyledOrders>{orders}</StyledOrders>
+      </>
     );
   }
 }
