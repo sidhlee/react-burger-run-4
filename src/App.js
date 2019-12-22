@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "./hoc/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder";
 import { Route } from "react-router-dom";
-import Checkout from "./containers/Checkout";
+import Checkout from "./containers/Checkout/Checkout";
 
 function App() {
   return (

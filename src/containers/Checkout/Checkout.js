@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CheckoutSummary from "../components/CheckoutSummary";
+import CheckoutSummary from "../../components/CheckoutSummary";
 
 const StyledCheckout = styled.div``;
 
