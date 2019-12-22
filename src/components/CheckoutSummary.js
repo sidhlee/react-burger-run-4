@@ -22,10 +22,10 @@ const CheckoutSummary = props => (
     <BurgerWrapper>
       <Burger ingredients={props.ingredients} />
     </BurgerWrapper>
-    <Button btnType="Danger" clicked>
+    <Button btnType="Danger" clicked={props.cancelCheckout}>
       Cancel
     </Button>
-    <Button btnType="Success" clicked>
+    <Button btnType="Success" clicked={props.continueCheckout}>
       Continue
     </Button>
   </StyledCheckoutSummary>
