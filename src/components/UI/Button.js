@@ -33,6 +33,8 @@ const StyledButton = styled.button`
 `;
 
 const Button = props => (
+  // need type="button".
+  // to prevent it from triggering onSubmit within a form
   <StyledButton {...props} onClick={props.clicked}>
     {props.children}
   </StyledButton>

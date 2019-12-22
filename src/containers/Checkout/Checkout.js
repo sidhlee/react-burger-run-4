@@ -8,16 +8,14 @@ const StyledCheckout = styled.div``;
 
 class Checkout extends Component {
   state = {
-    ingredients: {
-      salad: 1,
-      bacon: 1,
-      cheese: 1,
-      beef: 1
-    }
+    ingredients: null,
+    totalPrice: 0
   };
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
     const ingredients = this.parseIngredient();
-    this.setState({ ingredients });
+    const totalPrice = +ingredients.totalPrice;
+    delete ingredients.totalPrice;
+    this.setState({ ingredients, totalPrice });
   }
 
   cancelCheckout = () => {
@@ -48,7 +46,12 @@ class Checkout extends Component {
         />
         <Route
           path={this.props.match.path + "/contact-data"}
-          component={ContactData}
+          render={() => (
+            <ContactData
+              ingredients={this.state.ingredients}
+              totalPrice={this.state.totalPrice}
+            />
+          )}
         />
       </StyledCheckout>
     );
