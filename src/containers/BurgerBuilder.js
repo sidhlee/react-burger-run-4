@@ -88,7 +88,13 @@ export class BurgerBuilder extends Component {
     //     });
     //     console.log(err);
     //   });
-    this.props.history.push("/checkout");
+    const searchParam = Object.entries(this.state.ingredients)
+      .map(([ing, qty]) => `${ing}=${qty}`)
+      .join("&");
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + searchParam
+    });
   };
 
   addIngredient = ing => {

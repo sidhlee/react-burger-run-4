@@ -13,12 +13,28 @@ class Checkout extends Component {
       beef: 1
     }
   };
+  componentDidMount() {
+    const ingredients = this.parseIngredient();
+    this.setState({ ingredients });
+  }
 
   cancelCheckout = () => {
     this.props.history.goBack();
   };
   continueCheckout = () => {
     this.props.history.replace("/checkout/contact-data");
+  };
+  parseIngredient = () => {
+    const query = new URLSearchParams(this.props.location.search);
+    const ingredients = [...query.entries()].reduce(
+      (obj, [ing, qty]) => {
+        obj[ing] = +qty; // don't forget to numberfy paramed data!
+        return obj;
+      },
+      {}
+    );
+    console.log(ingredients);
+    return ingredients;
   };
   render() {
     return (
