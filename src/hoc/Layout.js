@@ -32,9 +32,7 @@ class Layout extends Component {
           closeSideDrawer={this.closeSideDrawer}
           sideDrawerOpened={this.state.sideDrawerOpened}
         />
-        {this.state.show && (
-          <StyledContent>{this.props.children}</StyledContent>
-        )}
+        <StyledContent>{this.props.children}</StyledContent>
       </StyledLayout>
     );
   }
