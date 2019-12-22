@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const StyledNavigationItem = styled.li`
   margin: 10px 0;
@@ -27,7 +28,7 @@ const activeStyleDesktop = `
   color: white;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(NavLink)`
   color: var(--darker);
   text-decoration: none;
   width: 100%;
@@ -56,7 +57,7 @@ const StyledLink = styled.a`
 
 const NavigationItem = props => (
   <StyledNavigationItem>
-    <StyledLink href={props.link} {...props}>
+    <StyledLink to={props.link} {...props} exact={props.exact}>
       {props.children}
     </StyledLink>
   </StyledNavigationItem>
