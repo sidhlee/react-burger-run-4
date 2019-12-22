@@ -23,7 +23,11 @@ const StyledButton = styled.button`
   font: inherit;
   outline: none;
   cursor: pointer;
-  font: inherit bold;
+  /* when you add 'inherit' to the shorthand property('font')
+    every rule included in that shorthand will be set to 'inherit'*/
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.2em;
   ${disabled}
   ${hover}
 `;
