@@ -38,6 +38,12 @@ This is the 4th run of building burger-builder with react and redux.
   - true|false
   - 1|0
   - obj|null
+- 'Route' component from 'react-router-dom' DOES NOT pass props to its `children` if `children` is class component.
+
+  - https://github.com/ReactTraining/react-router/issues/6960
+  - use `component={Child}` instead
+  - or call hooks from Child to get the routing context.
+  - useing`withRouter` is NOT recommended. (will be deprecated)
 
 #TODO:
 

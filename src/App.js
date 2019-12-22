@@ -10,12 +10,9 @@ function App() {
       <Layout>
         {/* rendering with children element is recommended
         over using component or render prop */}
-        <Route path="/" exact>
-          <BurgerBuilder />
-        </Route>
-        <Route path="/checkout">
-          <Checkout />
-        </Route>
+        {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
+        <Route path="/" exact component={BurgerBuilder} />
+        <Route path="/checkout" component={Checkout} />
       </Layout>
     </div>
   );
