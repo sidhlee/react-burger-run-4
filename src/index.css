@@ -17,6 +17,8 @@
   --z-index-Toolbar: 90;
   --z-index-Modal: 500;
   --z-index-Spinner: 600;
+  /* page margins */
+  --margin-top: 5em;
 }
 
 body {
