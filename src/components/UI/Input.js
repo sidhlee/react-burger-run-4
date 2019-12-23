@@ -33,6 +33,7 @@ const Input = props => {
     case "input":
       input = (
         <StyledInput
+          onChange={props.changed}
           as="input"
           {...props.config}
           value={props.value}
@@ -42,6 +43,7 @@ const Input = props => {
     case "textarea":
       input = (
         <StyledInput
+          onChange={props.changed}
           as="textarea"
           {...props.config}
           value={props.value}
@@ -50,7 +52,7 @@ const Input = props => {
       break;
     case "select":
       input = (
-        <StyledInput as="select" value={props.value}>
+        <StyledInput as="select">
           {props.config.options.map(option =>
             option.value ? (
               <option key={option.displayValue} value={option.value}>
@@ -72,6 +74,7 @@ const Input = props => {
     default:
       input = (
         <StyledInput
+          onChange={props.changed}
           as="input"
           {...props.config}
           value={props.value}

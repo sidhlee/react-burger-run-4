@@ -101,6 +101,19 @@ class ContactData extends Component {
         console.log(err);
       });
   };
+
+  inputChangedHandler = (e, id) => {
+    this.setState({
+      ...this.state,
+      orderForm: {
+        ...this.state.orderForm,
+        [id]: {
+          ...this.state.orderForm[id],
+          value: e.target.value
+        }
+      }
+    });
+  };
   render() {
     const inputObjects = Object.keys(this.state.orderForm).map(
       input => ({
@@ -115,6 +128,7 @@ class ContactData extends Component {
         inputType={inputObject.inputType}
         config={inputObject.config}
         value={inputObject.value}
+        changed={e => this.inputChangedHandler(e, inputObject.id)}
       />
     ));
 
