@@ -4,6 +4,7 @@ import Button from "../../components/UI/Button";
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Input from "../../components/UI/Input";
+import { checkValidity } from "../../validation";
 
 const StyledContactData = styled.div`
   width: 90%;
@@ -25,7 +26,12 @@ class ContactData extends Component {
           label: "Name",
           placeholder: "Your name"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        touched: false,
+        valid: false
       },
       street: {
         inputType: "input",
@@ -34,7 +40,12 @@ class ContactData extends Component {
           label: "Street",
           placeholder: "Street address"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        touched: false,
+        valid: false
       },
       zipCode: {
         inputType: "input",
@@ -43,7 +54,12 @@ class ContactData extends Component {
           label: "Zip Code",
           placeholder: "5 digit zip-code"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        touched: false,
+        valid: false
       },
       country: {
         inputType: "input",
@@ -52,7 +68,12 @@ class ContactData extends Component {
           label: "Country",
           placeholder: "Country"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        touched: false,
+        valid: false
       },
       email: {
         inputType: "input",
@@ -61,7 +82,12 @@ class ContactData extends Component {
           label: "Email",
           placeholder: "Your email"
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        touched: false,
+        valid: false
       },
       deliveryMethod: {
         inputType: "select",
@@ -73,7 +99,10 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: ""
+        value: "",
+        validation: {},
+        touched: false,
+        valid: false
       }
     },
     loading: false
