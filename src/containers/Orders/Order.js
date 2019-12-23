@@ -30,7 +30,9 @@ const Order = props => {
 
   return (
     <StyledOrder>
-      <p>Ingredients: {ingredientsSpans}</p>
+      <p style={{ lineHeight: "1.5em" }}>
+        Ingredients: {ingredientsSpans}
+      </p>
       <p>
         Price:{" "}
         <strong>
