@@ -4,11 +4,13 @@ import styled from "styled-components";
 const StyledInputGroup = styled.div`
   width: 100%;
   padding: 5px;
+  margin-bottom: 10px;
   box-sizing: border-box;
 `;
 const StyledLabel = styled.label`
   display: block;
   text-align: left;
+  margin: 0 0 5px 5px;
   font-size: 0.8em;
 `;
 const StyledInput = styled.div`
@@ -27,7 +29,7 @@ const StyledInput = styled.div`
 
 const Input = props => {
   let input;
-  switch (props.btnType) {
+  switch (props.inputType) {
     case "input":
       input = <StyledInput as="input" {...props} />;
       break;

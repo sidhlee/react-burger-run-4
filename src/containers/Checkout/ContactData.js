@@ -3,17 +3,28 @@ import styled from "styled-components";
 import Button from "../../components/UI/Button";
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import Input from "../../components/UI/Input";
 
-const StyledContactData = styled.div``;
+const StyledContactData = styled.div`
+  width: 90%;
+  margin: auto;
+  margin-bottom: 30px;
+  @media (min-width: 576px) {
+    width: calc(576px * 0.9);
+  }
+`;
 const StyledForm = styled.form``;
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      postalCode: ""
+    orderForm: {
+      name: "John",
+      address: {
+        street: "test st. 1",
+        zipCode: "12345",
+        country: "Japan"
+      },
+      email: "test@test.com"
     },
     loading: false
   };
@@ -25,15 +36,7 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ingredients,
       totalPrice: this.props.totalPrice,
-      customer: {
-        name: "John",
-        address: {
-          street: "test st. 1",
-          zipCode: "12345",
-          country: "Japan"
-        },
-        email: "test@test.com"
-      },
+      customer: {},
       deliveryMethod: "fastest"
     };
     axios
@@ -57,10 +60,30 @@ class ContactData extends Component {
         <StyledContactData>
           <h4>Enter your contact info</h4>
           <StyledForm onSubmit={this.startOrder}>
-            <input type="text" placeholder="Name" />
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Street" />
-            <input type="text" placeholder="Zip Code" />
+            <Input
+              inputType="input"
+              type="text"
+              placeholder="Your name"
+              label="Name"
+            />
+            <Input
+              inputType="input"
+              type="text"
+              placeholder="Your email"
+              label="Email"
+            />
+            <Input
+              inputType="input"
+              type="text"
+              placeholder="Street address"
+              label="Street"
+            />
+            <Input
+              inputType="input"
+              type="text"
+              placeholder="5 digit zipcode"
+              label="Zip Code"
+            />
             <Button btnType="Success">Order</Button>
           </StyledForm>
         </StyledContactData>
