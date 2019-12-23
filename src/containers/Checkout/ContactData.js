@@ -83,9 +83,18 @@ class ContactData extends Component {
     console.log("startOrder");
     e.preventDefault();
     this.setState({ loading: true });
+    const formData = Object.keys(this.state.orderForm).reduce(
+      (formData, input) => {
+        formData[input] = this.state.orderForm[input].value;
+        return formData;
+      },
+      {}
+    );
+
     const order = {
       ingredients: this.props.ingredients,
-      totalPrice: this.props.totalPrice
+      totalPrice: this.props.totalPrice,
+      orderData: formData
     };
     axios
       .post("/orders.json", order)

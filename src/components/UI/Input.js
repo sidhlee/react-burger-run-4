@@ -52,7 +52,7 @@ const Input = props => {
       break;
     case "select":
       input = (
-        <StyledInput as="select">
+        <StyledInput as="select" onChange={props.changed}>
           {props.config.options.map(option =>
             option.value ? (
               <option key={option.displayValue} value={option.value}>
