@@ -60,6 +60,7 @@ const Input = props => {
       input = (
         <StyledInput
           as="select"
+          defaultValue=""
           onChange={props.handleChange}
           touched={props.touched}
           valid={props.valid}
@@ -70,11 +71,7 @@ const Input = props => {
                 {option.displayValue}
               </option>
             ) : (
-              <option
-                key={option.displayValue}
-                value=""
-                style={{ display: "none" }}
-              >
+              <option key={option.displayValue} value="" disabled>
                 {option.displayValue}
               </option>
             )
