@@ -101,36 +101,29 @@ class ContactData extends Component {
       });
   };
   render() {
+    const inputObjects = Object.keys(this.state.orderForm).map(
+      input => ({
+        id: input,
+        ...this.state.orderForm[input]
+      })
+    );
+
+    const inputs = inputObjects.map(inputObject => (
+      <Input
+        key={inputObject.id}
+        inputType={inputObject.inputType}
+        config={inputObject.config}
+        value={inputObject.value}
+      />
+    ));
+
     return (
       <>
         {this.state.loading && <Spinner show={this.state.loading} />}
         <StyledContactData>
           <h4>Enter your contact info</h4>
           <StyledForm onSubmit={this.startOrder}>
-            <Input
-              inputType="input"
-              type="text"
-              placeholder="Your name"
-              label="Name"
-            />
-            <Input
-              inputType="input"
-              type="text"
-              placeholder="Your email"
-              label="Email"
-            />
-            <Input
-              inputType="input"
-              type="text"
-              placeholder="Street address"
-              label="Street"
-            />
-            <Input
-              inputType="input"
-              type="text"
-              placeholder="5 digit zipcode"
-              label="Zip Code"
-            />
+            {inputs}
             <Button btnType="Success">Order</Button>
           </StyledForm>
         </StyledContactData>
