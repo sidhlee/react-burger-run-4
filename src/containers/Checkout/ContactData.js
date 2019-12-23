@@ -56,7 +56,10 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          isNumeric: true,
+          minLength: 5,
+          maxLength: 5
         },
         touched: false,
         valid: false
@@ -84,7 +87,8 @@ class ContactData extends Component {
         },
         value: "",
         validation: {
-          required: true
+          required: true,
+          isEmail: true
         },
         touched: false,
         valid: false
@@ -105,7 +109,8 @@ class ContactData extends Component {
         valid: false
       }
     },
-    loading: false
+    loading: false,
+    isFormValid: false
   };
 
   startOrder = e => {
@@ -140,16 +145,29 @@ class ContactData extends Component {
       });
   };
 
-  inputChangedHandler = (e, id) => {
+  handleChange = (e, id) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm,
+      [id]: {
+        ...this.state.orderForm[id],
+        value: e.target.value,
+        touched: true
+      }
+    };
+    const input = updatedOrderForm[id];
+    input.valid = checkValidity(input.value, input.validation);
+    const isFormValid = Object.keys(updatedOrderForm).reduce(
+      (bool, id) => {
+        bool = this.state.orderForm[id].valid && bool;
+        return bool;
+      },
+      true
+    );
+
     this.setState({
       ...this.state,
-      orderForm: {
-        ...this.state.orderForm,
-        [id]: {
-          ...this.state.orderForm[id],
-          value: e.target.value
-        }
-      }
+      orderForm: updatedOrderForm,
+      isFormValid: isFormValid
     });
   };
   render() {
@@ -166,7 +184,9 @@ class ContactData extends Component {
         inputType={inputObject.inputType}
         config={inputObject.config}
         value={inputObject.value}
-        changed={e => this.inputChangedHandler(e, inputObject.id)}
+        valid={inputObject.valid}
+        touched={inputObject.touched}
+        handleChange={e => this.handleChange(e, inputObject.id)}
       />
     ));
 
@@ -177,7 +197,12 @@ class ContactData extends Component {
           <h4>Enter your contact info</h4>
           <StyledForm onSubmit={this.startOrder}>
             {inputs}
-            <Button btnType="Success">Order</Button>
+            <Button
+              btnType="Success"
+              disabled={!this.state.isFormValid}
+            >
+              Order
+            </Button>
           </StyledForm>
         </StyledContactData>
       </>

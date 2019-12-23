@@ -25,6 +25,8 @@ const StyledInput = styled.div`
   font: inherit;
   font-size: 1em;
   padding: 8px 10px;
+  ${props =>
+    !props.valid && props.touched ? `border: 1px solid red;` : null}
 `;
 
 const Input = props => {
@@ -33,26 +35,35 @@ const Input = props => {
     case "input":
       input = (
         <StyledInput
-          onChange={props.changed}
+          onChange={props.handleChange}
           as="input"
           {...props.config}
           value={props.value}
+          touched={props.touched}
+          valid={props.valid}
         />
       );
       break;
     case "textarea":
       input = (
         <StyledInput
-          onChange={props.changed}
+          onChange={props.handleChange}
           as="textarea"
           {...props.config}
           value={props.value}
+          touched={props.touched}
+          valid={props.valid}
         />
       );
       break;
     case "select":
       input = (
-        <StyledInput as="select" onChange={props.changed}>
+        <StyledInput
+          as="select"
+          onChange={props.handleChange}
+          touched={props.touched}
+          valid={props.valid}
+        >
           {props.config.options.map(option =>
             option.value ? (
               <option key={option.displayValue} value={option.value}>
@@ -74,10 +85,12 @@ const Input = props => {
     default:
       input = (
         <StyledInput
-          onChange={props.changed}
+          onChange={props.handleChange}
           as="input"
           {...props.config}
           value={props.value}
+          touched={props.touched}
+          valid={props.valid}
         />
       );
   }
