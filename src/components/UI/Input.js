@@ -48,6 +48,27 @@ const Input = props => {
         />
       );
       break;
+    case "select":
+      input = (
+        <StyledInput as="select" value={props.value}>
+          {props.config.options.map(option =>
+            option.value ? (
+              <option key={option.displayValue} value={option.value}>
+                {option.displayValue}
+              </option>
+            ) : (
+              <option
+                key={option.displayValue}
+                value=""
+                style={{ display: "none" }}
+              >
+                {option.displayValue}
+              </option>
+            )
+          )}
+        </StyledInput>
+      );
+      break;
     default:
       input = (
         <StyledInput

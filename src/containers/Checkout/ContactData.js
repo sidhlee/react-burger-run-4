@@ -68,6 +68,7 @@ class ContactData extends Component {
         config: {
           label: "Delivery Method",
           options: [
+            { value: "", displayValue: "Please select one" },
             { value: "fastest", displayValue: "Fastest" },
             { value: "cheapest", displayValue: "Cheapest" }
           ]
