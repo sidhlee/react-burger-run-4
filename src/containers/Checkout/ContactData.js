@@ -18,13 +18,62 @@ const StyledForm = styled.form``;
 class ContactData extends Component {
   state = {
     orderForm: {
-      name: "John",
-      address: {
-        street: "test st. 1",
-        zipCode: "12345",
-        country: "Japan"
+      name: {
+        inputType: "input",
+        config: {
+          type: "text",
+          label: "Name",
+          placeholder: "Your name"
+        },
+        value: ""
       },
-      email: "test@test.com"
+      street: {
+        inputType: "input",
+        config: {
+          type: "text",
+          label: "Street",
+          placeholder: "Street address"
+        },
+        value: ""
+      },
+      zipCode: {
+        inputType: "input",
+        config: {
+          type: "text",
+          label: "Zip Code",
+          placeholder: "5 digit zip-code"
+        },
+        value: ""
+      },
+      country: {
+        inputType: "input",
+        config: {
+          type: "text",
+          label: "Country",
+          placeholder: "Country"
+        },
+        value: ""
+      },
+      email: {
+        inputType: "input",
+        config: {
+          type: "email",
+          label: "Email",
+          placeholder: "Your email"
+        },
+        value: ""
+      },
+      deliveryMethod: {
+        inputType: "select",
+        config: {
+          label: "Delivery Method",
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" }
+          ]
+        },
+        value: ""
+      }
     },
     loading: false
   };
@@ -35,9 +84,7 @@ class ContactData extends Component {
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
-      totalPrice: this.props.totalPrice,
-      customer: {},
-      deliveryMethod: "fastest"
+      totalPrice: this.props.totalPrice
     };
     axios
       .post("/orders.json", order)
