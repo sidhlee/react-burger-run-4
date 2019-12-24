@@ -144,7 +144,9 @@ class ContactData extends Component {
         console.log(err);
       });
   };
-
+  // TODO: fix select element behavior
+  // where isFormValid doesn't get updated when selecting
+  // the first availble option ('Fastest')
   handleChange = (e, id) => {
     const updatedOrderForm = {
       ...this.state.orderForm,

@@ -27,6 +27,8 @@ const StyledInput = styled.div`
   padding: 8px 10px;
   ${props =>
     !props.valid && props.touched ? `border: 1px solid red;` : null}
+  /* remove chrome's default styling on select element */
+  appearance: none;
 `;
 
 const Input = props => {
