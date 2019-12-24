@@ -19,6 +19,10 @@ This is the 4th run of building burger-builder with react and redux.
 - Separate spinner from Modal
   - with its own Backdrop
   - with the highest z-index (higher than Modal)
+- Redux Styled Guide in effect
+  - https://redux.js.org/style-guide/style-guide/
+  - Structuring files with "feature folders"
+  - `domain/eventName` actionTypes.
 
 ## Discovered:
 
@@ -45,6 +49,9 @@ This is the 4th run of building burger-builder with react and redux.
   - or call hooks from Child to get the routing context.
   - useing`withRouter` is NOT recommended. (will be deprecated)
 
-#TODO:
+- Action types are defined from existing container methods that "do" something. For example:
+
+  - `addIngredient` => `ADD_INGREDIENT`
+    #TODO:
 
 - Play around with burger ingredient css to understand each property value;
