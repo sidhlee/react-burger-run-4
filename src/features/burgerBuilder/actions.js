@@ -1,2 +1,2 @@
-export const ADD_INGREDIENTS = "burgerBuilder/addIngredients";
-export const REMOVE_INGREDIENTS = "burgerBuilder/removeIngredients";
+export const ADD_INGREDIENT = "burgerBuilder/addIngredient";
+export const REMOVE_INGREDIENT = "burgerBuilder/removeIngredient";

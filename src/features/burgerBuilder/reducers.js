@@ -1,4 +1,4 @@
-import { ADD_INGREDIENTS, REMOVE_INGREDIENTS } from "./actions";
+import { ADD_INGREDIENT, REMOVE_INGREDIENT } from "./actions";
 
 const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
@@ -13,6 +13,30 @@ const initialState = {
   totalPrice: BASE_PRICE
 };
 
-const burgerBuilderReducer = (state = initialState, action) => {};
+const addIngredient = (state, action) => ({
+  ...state,
+  ingredients: {
+    ...state.ingredients,
+    [action.id]: state.ingredients[action.id] + 1
+  }
+});
+const removeIngredient = (state, action) => ({
+  ...state,
+  ingredients: {
+    ...state.ingredients,
+    [action.id]: state.ingredients[action.id] - 1
+  }
+});
+
+const burgerBuilderReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_INGREDIENT:
+      return addIngredient(state, action);
+    case REMOVE_INGREDIENT:
+      return removeIngredient(state, action);
+    default:
+      return state;
+  }
+};
 
 export default burgerBuilderReducer;
