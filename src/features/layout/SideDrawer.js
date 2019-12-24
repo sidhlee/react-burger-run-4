@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../Logo";
-import NavigationItems from "./NavigationItems";
-import Backdrop from "../UI/Backdrop";
+import Logo from "../layout/toolbar/Logo";
+import NavigationItems from "./toolbar/Navigation/NavigationItems";
+import Backdrop from "../../common/UI/Backdrop";
 
 const StyledSideDrawer = styled.div`
   position: fixed;

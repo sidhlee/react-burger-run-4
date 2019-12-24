@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Modal from "../components/UI/Modal";
+import Modal from "../UI/Modal";
 
 const withErrorHandler = (C, axios) => {
   return class extends Component {

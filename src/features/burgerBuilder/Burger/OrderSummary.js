@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../UI/Button";
+import Button from "../../../common/UI/Button";
 
 const ListGroup = styled.ul`
   display: table;

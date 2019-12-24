@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { disabled, hover } from "../../utils";
+import { disabled, hover } from "../utils";
 
 const getColorOnTypes = props => {
   switch (props.btnType) {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Button from "../../components/UI/Button";
-import axios from "../../axios-orders";
-import Spinner from "../../components/UI/Spinner/Spinner";
-import Input from "../../components/UI/Input";
-import { checkValidity } from "../../validation";
+import Button from "../../common/UI/Button";
+import axios from "../../common/axios-orders";
+import Spinner from "../../common/UI/Spinner/Spinner";
+import Input from "../../common/UI/Input";
+import { checkValidity } from "../../common/validation";
 
 const StyledContactData = styled.div`
   width: 90%;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Burger from "../components/Burger/Burger";
-import Button from "../components/UI/Button";
+import Burger from "../burgerBuilder/Burger/Burger";
+import Button from "../../common/UI/Button";
 
 const StyledCheckoutSummary = styled.div`
   text-align: center;

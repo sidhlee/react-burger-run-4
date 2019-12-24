@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Burger from "../components/Burger/Burger";
-import BuildControls from "../components/Burger/BuildControls";
-import * as mock from "../mock";
+import Burger from "./Burger/Burger";
+import BuildControls from "./Burger/BuildControls";
+import * as mock from "../../common/mock";
 
-import Modal from "../components/UI/Modal";
-import OrderSummary from "../components/Burger/OrderSummary";
+import Modal from "../../common/UI/Modal";
+import OrderSummary from "./Burger/OrderSummary";
 
-import axios from "../axios-orders";
-import Spinner from "../components/UI/Spinner/Spinner";
+import axios from "../../common/axios-orders";
+import Spinner from "../../common/UI/Spinner/Spinner";
 
-import withErrorHandler from "../hoc/withErrorHandler";
+import withErrorHandler from "../../common/hoc/withErrorHandler";
 
 const Wrapper = styled.div``;
 const BASE_PRICE = 4.99;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { disabled } from "../../utils";
+import { disabled } from "../../../common/utils";
 
 const enable = keyframes`
   0% {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CheckoutSummary from "../../components/CheckoutSummary";
+import CheckoutSummary from "./CheckoutSummary";
 import { Route } from "react-router-dom";
 import ContactData from "./ContactData";
-import axios from "../../axios-orders";
-import withErrorHandler from "../../hoc/withErrorHandler";
+import axios from "../../common/axios-orders";
+import withErrorHandler from "../../common/hoc/withErrorHandler";
 
 const StyledCheckout = styled.div``;
 

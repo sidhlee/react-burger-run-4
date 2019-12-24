@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "../../axios-orders";
-import withErrorHandler from "../../hoc/withErrorHandler";
-import Spinner from "../../components/UI/Spinner/Spinner";
+import axios from "../../common/axios-orders";
+import withErrorHandler from "../../common/hoc/withErrorHandler";
+import Spinner from "../../common/UI/Spinner/Spinner";
 
 import Order from "./Order";
 

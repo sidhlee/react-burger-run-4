@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Logo from "../Logo";
-import NavigationItems from "./NavigationItems";
-import DrawerToggle from "./DrawerToggle";
+import Logo from "./Logo";
+import NavigationItems from "../../Navigation/NavigationItems";
+import DrawerToggle from "../../Navigation/DrawerToggle";
 
 const StyledToolbar = styled.header`
   height: 58px;

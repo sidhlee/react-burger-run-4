@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Toolbar from "../components/Navigation/Toolbar";
-import SideDrawer from "../components/Navigation/SideDrawer";
+import Toolbar from "./toolbar/Toolbar";
+import SideDrawer from "../Navigation/SideDrawer";
 
 const StyledLayout = styled.div`
   text-align: center;
