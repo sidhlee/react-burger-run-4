@@ -14,6 +14,7 @@ import withErrorHandler from "../../common/hoc/withErrorHandler";
 const Wrapper = styled.div``;
 
 export class BurgerBuilder extends Component {
+  // local UI states only
   state = {
     ordering: false,
     loading: false,
@@ -48,14 +49,7 @@ export class BurgerBuilder extends Component {
   };
 
   continueOrder = () => {
-    const searchParam = Object.entries(this.props.ingredients)
-      .map(([ing, qty]) => `${ing}=${qty}`)
-      .join("&");
-    this.props.history.push({
-      pathname: "/checkout",
-      search:
-        "?" + searchParam + `&totalPrice=${this.props.totalPrice}`
-    });
+    this.props.history.push("/checkout");
   };
 
   render() {
@@ -72,6 +66,7 @@ export class BurgerBuilder extends Component {
           addIngredient={this.props.addIngredient}
           removeIngredient={this.props.removeIngredient}
           totalPrice={this.props.totalPrice}
+          // updatePurchasable gets called every time this is re-rendered
           purchasable={this.updatePurchasable()}
           beginOrder={this.beginOrder}
         />

@@ -23,6 +23,9 @@ This is the 4th run of building burger-builder with react and redux.
   - https://redux.js.org/style-guide/style-guide/
   - Structuring files with "feature folders"
   - `domain/eventName` actionTypes.
+  - Separate Container Component that wraps the feature.
+  - Object shorthand for mapDispatchToProps.
+  - Renamed mapDispatchToProps to actionCreators.
 
 ## Discovered:
 
