@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import CheckoutSummary from "./CheckoutSummary";
 import { Route } from "react-router-dom";
-import ContactData from "./ContactData";
+import ContactDataContainer from "./ContactDataContainer";
 import axios from "../../common/axios-orders";
 import withErrorHandler from "../../common/hoc/withErrorHandler";
 
@@ -26,13 +26,7 @@ class Checkout extends Component {
         />
         <Route
           path={this.props.match.path + "/contact-data"}
-          render={props => (
-            <ContactData
-              {...props}
-              ingredients={this.props.ingredients}
-              totalPrice={this.props.totalPrice}
-            />
-          )}
+          component={ContactDataContainer}
         />
       </StyledCheckout>
     );
