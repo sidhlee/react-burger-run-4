@@ -55,7 +55,8 @@ const fetchIngredientsSuccess = (state, action) => {
       cheese: action.ingredients.cheese,
       beef: action.ingredients.beef
     },
-    fetchIngredientsSuccess: false
+    fetchIngredientsSuccess: false,
+    totalPrice: 4.99
   };
 };
 
