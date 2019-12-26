@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT } from "./actions";
+import { INGREDIENT_ADDED, INGREDIENT_REMOVED } from "./actions";
 
 const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
@@ -14,7 +14,7 @@ const initialState = {
   totalPrice: BASE_PRICE
 };
 
-const addIngredient = (state, action) => {
+const ingredientAdded = (state, action) => {
   const qty = state.ingredients[action.id];
   const updatedIngredients = {
     ...state.ingredients,
@@ -28,7 +28,7 @@ const addIngredient = (state, action) => {
     totalPrice: updatedTotalPrice
   };
 };
-const removeIngredient = (state, action) => {
+const ingredientRemoved = (state, action) => {
   const qty = state.ingredients[action.id];
   // can't remove when qty <= 0
   if (qty <= 0) return;
@@ -47,10 +47,10 @@ const removeIngredient = (state, action) => {
 
 const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_INGREDIENT:
-      return addIngredient(state, action);
-    case REMOVE_INGREDIENT:
-      return removeIngredient(state, action);
+    case INGREDIENT_ADDED:
+      return ingredientAdded(state, action);
+    case INGREDIENT_REMOVED:
+      return ingredientRemoved(state, action);
     default:
       return state;
   }

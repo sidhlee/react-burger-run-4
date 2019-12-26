@@ -1,14 +1,14 @@
 /* Actions types */
-export const ADD_INGREDIENT = "burgerBuilder/addIngredient";
-export const REMOVE_INGREDIENT = "burgerBuilder/removeIngredient";
+export const INGREDIENT_ADDED = "burgerBuilder/ingredientAdded";
+export const INGREDIENT_REMOVED = "burgerBuilder/ingredientRemoved";
 
 /* Action creators */
 export const addIngredient = id => ({
-  type: ADD_INGREDIENT,
+  type: INGREDIENT_ADDED,
   id
 });
 
 export const removeIngredient = id => ({
-  type: REMOVE_INGREDIENT,
+  type: INGREDIENT_REMOVED,
   id
 });
