@@ -28,6 +28,7 @@ export class BurgerBuilder extends Component {
   }
 
   updatePurchasable = () => {
+    if (!this.props.ingredients) return false;
     const totalQty = Object.values(this.props.ingredients).reduce(
       (a, b) => a + b
     );
@@ -52,7 +53,7 @@ export class BurgerBuilder extends Component {
       <div style={{ marginTop: "10em" }}>
         Ingredients cannot be loaded from the server.
       </div>
-    ) : (
+    ) : this.props.ingredients ? (
       <>
         <Burger ingredients={this.props.ingredients} />
         <BuildControls
@@ -65,21 +66,21 @@ export class BurgerBuilder extends Component {
           beginOrder={this.beginOrder}
         />
       </>
-    );
+    ) : null;
+    const orderSummary = this.props.ingredients ? (
+      <Modal show={this.state.ordering} closeModal={this.cancelOrder}>
+        <OrderSummary
+          ingredients={this.props.ingredients}
+          continueOrder={this.continueOrder}
+          cancelOrder={this.cancelOrder}
+          totalPrice={this.props.totalPrice}
+        />
+      </Modal>
+    ) : null;
     return (
       <Wrapper>
         {this.state.fetchingIngredients && <Spinner />}
-        <Modal
-          show={this.state.ordering}
-          closeModal={this.cancelOrder}
-        >
-          <OrderSummary
-            ingredients={this.props.ingredients}
-            continueOrder={this.continueOrder}
-            cancelOrder={this.cancelOrder}
-            totalPrice={this.props.totalPrice}
-          />
-        </Modal>
+        {orderSummary}
         {burgerAndControls}
       </Wrapper>
     );

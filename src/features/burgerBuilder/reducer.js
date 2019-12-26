@@ -10,7 +10,7 @@ const INGREDIENT_PRICES = {
 
 /* Reducers should own the state shape */
 const initialState = {
-  ingredients: { salad: 1, bacon: 1, cheese: 1, beef: 1 },
+  ingredients: null,
   totalPrice: BASE_PRICE,
   fetchError: false
 };
