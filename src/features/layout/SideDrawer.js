@@ -41,7 +41,7 @@ const SideDrawer = props => (
     <StyledSideDrawer
       show={props.sideDrawerOpened}
       {...props}
-      Onclick={props.closeSideDrawer}
+      onClick={props.closeSideDrawer}
     >
       <LogoWrapper>
         <Logo />
