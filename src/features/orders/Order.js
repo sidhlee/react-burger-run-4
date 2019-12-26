@@ -13,11 +13,12 @@ const StyledOrder = styled.div`
 `;
 const StyledIngredientSpan = styled.span`
   text-transform: capitalize;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--light-gray);
   border-radius: 8px;
   font-size: 0.75em;
-  margin-right: 5px;
-  padding: 2px 5px;
+  margin: 0 3px 3px 0;
+  padding: 0px 5px;
+  display: inline-block;
 `;
 const Order = props => {
   const ingredientsSpans = props.ingredients
