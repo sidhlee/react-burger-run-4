@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Button from "../../common/UI/Button";
-import axios from "../../common/axios-orders";
-import Spinner from "../../common/UI/Spinner/Spinner";
-import Input from "../../common/UI/Input";
-import { checkValidity } from "../../common/validation";
+import Button from "../../../common/UI/Button";
+import axios from "../../../common/axios-orders";
+import Spinner from "../../../common/UI/Spinner/Spinner";
+import Input from "../../../common/UI/Input";
+import { checkValidity } from "../../../common/validation";
+import withErrorHandler from "../../../common/hoc/withErrorHandler";
 
 const StyledContactData = styled.div`
   width: 90%;
@@ -109,12 +110,11 @@ class ContactData extends Component {
         valid: false
       }
     },
-    loading: false,
+    ordering: false,
     isFormValid: false
   };
 
-  startOrder = e => {
-    console.log("startOrder");
+  orderBurger = e => {
     e.preventDefault();
     this.setState({ loading: true });
     const formData = Object.keys(this.state.orderForm).reduce(
@@ -130,20 +130,13 @@ class ContactData extends Component {
       totalPrice: this.props.totalPrice,
       orderData: formData
     };
-    axios
-      .post("/orders.json", order)
-      .then(res => {
-        this.setState({ loading: false });
-        console.log(res);
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        this.setState({
-          loading: false
-        });
-        console.log(err);
-      });
+
+    this.props.orderBurger(order).then(() => {
+      this.setState({ loading: false });
+      this.props.history.push("/");
+    });
   };
+
   // TODO: fix select element behavior
   // where isFormValid doesn't get updated when selecting
   // any option the first time.
@@ -194,10 +187,12 @@ class ContactData extends Component {
 
     return (
       <>
-        {this.state.loading && <Spinner show={this.state.loading} />}
+        {this.state.ordering && (
+          <Spinner show={this.state.ordering} />
+        )}
         <StyledContactData>
           <h4>Enter your contact info</h4>
-          <StyledForm onSubmit={this.startOrder}>
+          <StyledForm onSubmit={this.orderBurger}>
             {inputs}
             <Button
               btnType="Success"
@@ -212,4 +207,4 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+export default withErrorHandler(ContactData, axios);

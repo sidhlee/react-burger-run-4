@@ -10,8 +10,8 @@ This is the 4th run of building burger-builder with react and redux.
   3. git remote add origin "github-repo-uri"
   4. git push -u origin master.
   5. Go to extensions and search for @builtin git, enable them if not.
-  6. VScode's version control menu will work now.
-- Uses vscode's version control. Learn workflow of:
+  6. VS code's version control menu will work now.
+- Uses vs code's version control. Learn workflow of:
   1. make changes
   2. stage changes and commit with message.
   3. push (to the github)
@@ -35,13 +35,13 @@ This is the 4th run of building burger-builder with react and redux.
 - The correct way to import lodash (with Benchmark)
   - https://www.blazemeter.com/blog/the-correct-way-to-import-lodash-libraries-a-benchmark/
   - https://stackoverflow.com/questions/35250500/correct-way-to-import-lodash
-- React displaces components nested deep in arrays with no prblem.
+- React displaces components nested deep in arrays with no problem.
 - Use `filter` css property to lighten/darken UIs.
-  - `filter: brighness(0.9)` in css darkens element.
+  - `filter: brightness(0.9)` in css darkens element.
   - `filter: opacity(0.5)` is great for styling disabled buttons.
   - https://developer.mozilla.org/en-US/docs/Web/CSS/filter
   - setting `margin-left(right): auto` on child element inside flex-box will affect how sibling elements are aligned.
-- If you want to take truthy|falsey value for a state property, don't type-check it (e.g. with propTypes). That way, it can take:
+- If you want to take truthy|falsy value for a state property, don't type-check it (e.g. with propTypes). That way, it can take:
   - true|false
   - 1|0
   - obj|null
@@ -50,7 +50,7 @@ This is the 4th run of building burger-builder with react and redux.
   - https://github.com/ReactTraining/react-router/issues/6960
   - use `component={Child}` instead
   - or call hooks from Child to get the routing context.
-  - useing`withRouter` is NOT recommended. (will be deprecated)
+  - using`withRouter` is NOT recommended. (will be deprecated)
 
 - Action types are defined from existing container methods that "do" something. For example:
 

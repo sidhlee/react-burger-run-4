@@ -12,31 +12,19 @@ const StyledOrders = styled.div`
 
 class Orders extends Component {
   state = {
-    orders: [],
-    loading: true
+    fetchingOrders: true
   };
 
   componentDidMount() {
-    axios
-      .get("/orders.json")
-      .then(res => {
-        const orders = Object.entries(res.data).map(
-          ([id, order]) => ({
-            id,
-            ...order
-          })
-        );
-        this.setState({ orders, loading: false });
-      })
-      .catch(err => {
-        this.setState({ loading: false });
-      });
+    this.props.fetchOrders().then(() => {
+      this.setState({ fetchingOrders: false });
+    });
   }
 
   render() {
-    const orders = this.state.loading
+    const orders = this.state.fetchingOrders
       ? null
-      : this.state.orders.map(order => (
+      : this.props.orders.map(order => (
           <Order
             key={order.id}
             ingredients={order.ingredients}
@@ -45,7 +33,9 @@ class Orders extends Component {
         ));
     return (
       <>
-        {this.loading && <Spinner show={this.loading} />}
+        {this.state.fetchingOrders && (
+          <Spinner show={this.fetchingOrders} />
+        )}
         <StyledOrders>{orders}</StyledOrders>
       </>
     );

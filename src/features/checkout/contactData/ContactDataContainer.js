@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import ContactData from "./ContactData";
+import { orderBurger } from "./actions";
 
 const mapState = state => {
   const {
@@ -8,4 +9,7 @@ const mapState = state => {
   return { ingredients, totalPrice };
 };
 
-export default connect(mapState)(ContactData);
+const actionCreators = {
+  orderBurger
+};
+export default connect(mapState, actionCreators)(ContactData);

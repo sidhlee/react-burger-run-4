@@ -3,7 +3,7 @@ import Layout from "../features/layout/Layout";
 import BurgerBuilderContainer from "../features/burgerBuilder/BurgerBuilderContainer";
 import { Route, Switch } from "react-router-dom";
 import CheckoutContainer from "../features/checkout/CheckoutContainer";
-import Orders from "../features/orders/Orders";
+import OrdersContainer from "../features/orders/OrdersContainer";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
           <Route path="/" exact component={BurgerBuilderContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
-          <Route path="/orders" component={Orders} />
+          <Route path="/orders" component={OrdersContainer} />
         </Switch>
       </Layout>
     </div>

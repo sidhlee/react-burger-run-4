@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import CheckoutSummary from "./CheckoutSummary";
 import { Route } from "react-router-dom";
-import ContactDataContainer from "./ContactDataContainer";
+import ContactDataContainer from "./contactData/ContactDataContainer";
 import axios from "../../common/axios-orders";
 import withErrorHandler from "../../common/hoc/withErrorHandler";
 
