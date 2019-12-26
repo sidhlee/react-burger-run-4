@@ -17,20 +17,14 @@ export class BurgerBuilder extends Component {
   // local UI states only
   state = {
     ordering: false,
-    loading: false,
-    fetchError: false
+    fetchingIngredients: false
   };
 
   componentDidMount() {
-    // this.setState({ loading: true });
-    // axios
-    //   .get("/ingredients.json")
-    //   .then(res => {
-    //     this.setState({ ingredients: res.data, loading: false });
-    //   })
-    //   .catch(err => {
-    //     this.setState({ loading: false, fetchError: true });
-    //   });
+    this.setState({ fetchingIngredients: true });
+    this.props.initIngredients().then(() => {
+      this.setState({ fetchingIngredients: false });
+    });
   }
 
   updatePurchasable = () => {
@@ -53,8 +47,8 @@ export class BurgerBuilder extends Component {
   };
 
   render() {
-    const burgerAndControls = this.state.fetchError ? (
-      // TODO: why <p> doens't work with marginTop style here? other styles like color work though.
+    const burgerAndControls = this.props.fetchError ? (
+      // TODO: why <p> doesn't work with marginTop style here? other styles like color work though.
       <div style={{ marginTop: "10em" }}>
         Ingredients cannot be loaded from the server.
       </div>
@@ -74,7 +68,7 @@ export class BurgerBuilder extends Component {
     );
     return (
       <Wrapper>
-        {this.state.loading && <Spinner />}
+        {this.state.fetchingIngredients && <Spinner />}
         <Modal
           show={this.state.ordering}
           closeModal={this.cancelOrder}

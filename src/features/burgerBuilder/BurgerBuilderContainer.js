@@ -1,17 +1,22 @@
 import { connect } from "react-redux";
 import BurgerBuilder from "./BurgerBuilder";
-import { addIngredient, removeIngredient } from "./actions";
+import {
+  addIngredient,
+  removeIngredient,
+  initIngredients
+} from "./actions";
 
 const mapState = state => {
   const {
-    burgerBuilder: { ingredients, totalPrice }
+    burgerBuilder: { ingredients, totalPrice, fetchError }
   } = state;
-  return { ingredients, totalPrice };
+  return { ingredients, totalPrice, fetchError };
 };
 
 const actionCreators = {
   addIngredient,
-  removeIngredient
+  removeIngredient,
+  initIngredients
 };
 
 export default connect(mapState, actionCreators)(BurgerBuilder);

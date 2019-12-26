@@ -1,4 +1,4 @@
-import { INGREDIENT_ADDED, INGREDIENT_REMOVED } from "./actions";
+import * as types from "./actions";
 
 const BASE_PRICE = 4.99;
 const INGREDIENT_PRICES = {
@@ -11,7 +11,8 @@ const INGREDIENT_PRICES = {
 /* Reducers should own the state shape */
 const initialState = {
   ingredients: { salad: 1, bacon: 1, cheese: 1, beef: 1 },
-  totalPrice: BASE_PRICE
+  totalPrice: BASE_PRICE,
+  fetchError: false
 };
 
 const ingredientAdded = (state, action) => {
@@ -44,13 +45,37 @@ const ingredientRemoved = (state, action) => {
     totalPrice: updatedTotalPrice
   };
 };
+const fetchIngredientsSuccess = (state, action) => {
+  return {
+    ...state,
+    // re-ordering ingredients fetched from firebase
+    ingredients: {
+      salad: action.ingredients.salad,
+      bacon: action.ingredients.bacon,
+      cheese: action.ingredients.cheese,
+      beef: action.ingredients.beef
+    },
+    fetchIngredientsSuccess: false
+  };
+};
+
+const fetchIngredientsFail = (state, action) => {
+  return {
+    ...state,
+    fetchError: true
+  };
+};
 
 const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case INGREDIENT_ADDED:
+    case types.INGREDIENT_ADDED:
       return ingredientAdded(state, action);
-    case INGREDIENT_REMOVED:
+    case types.INGREDIENT_REMOVED:
       return ingredientRemoved(state, action);
+    case types.FETCH_INGREDIENTS_SUCCESS:
+      return fetchIngredientsSuccess(state, action);
+    case types.FETCH_INGREDIENTS_FAIL:
+      return fetchIngredientsFail(state, action);
     default:
       return state;
   }
