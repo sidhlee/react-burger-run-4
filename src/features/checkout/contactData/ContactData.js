@@ -137,9 +137,6 @@ class ContactData extends Component {
     });
   };
 
-  // TODO: fix select element behavior
-  // where isFormValid doesn't get updated when selecting
-  // any option the first time.
   handleChange = (e, id) => {
     const updatedOrderForm = {
       ...this.state.orderForm,

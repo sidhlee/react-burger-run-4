@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { checkValidity } from "../../common/validation/";
 import Input from "../../common/UI/Input";
 import Button from "../../common/UI/Button";
+import Spinner from "../../common/UI/Spinner/Spinner";
 
 const StyledAuth = styled.div``;
 const StyledForm = styled.form`
@@ -45,7 +46,8 @@ class Auth extends Component {
         valid: false
       }
     },
-    isFormValid: false
+    isFormValid: false,
+    isSignIn: true
   };
 
   handleChange = (e, id) => {
@@ -62,7 +64,6 @@ class Auth extends Component {
 
     this.setState(
       {
-        ...this.state,
         controls: updatedControls
       },
       () => {
@@ -75,7 +76,6 @@ class Auth extends Component {
           true
         );
         this.setState({
-          ...this.state,
           isFormValid
         });
       }
@@ -85,9 +85,26 @@ class Auth extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.auth(
-      this.state.email.value,
-      this.state.password.value
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.isSignIn
     );
+  };
+
+  switchAuthMode = () => {
+    this.setState(prevState => ({
+      controls: {
+        email: {
+          ...this.state.controls.email,
+          value: ""
+        },
+        password: {
+          ...this.state.controls.password,
+          value: ""
+        }
+      },
+      isSignIn: !prevState.isSignIn
+    }));
   };
 
   render() {
@@ -110,18 +127,27 @@ class Auth extends Component {
       />
     ));
     return (
-      <StyledAuth>
-        <StyledForm onSubmit={this.handleSubmit}>
-          {inputs}
-          <Button
-            btnType="Success"
-            disabled={!this.state.isFormValid}
-          >
-            Sign up
-          </Button>
-          <Button btnType="Danger">Sign in</Button>
-        </StyledForm>
-      </StyledAuth>
+      <>
+        {this.props.loading && <Spinner show={this.props.loading} />}
+        <StyledAuth>
+          <StyledForm onSubmit={this.handleSubmit}>
+            {inputs}
+            <Button
+              btnType="Success"
+              disabled={!this.state.isFormValid}
+            >
+              {this.state.isSignIn ? "Sign In" : "Sign Up"}
+            </Button>
+            <Button
+              btnType="Danger"
+              type="button"
+              clicked={this.switchAuthMode}
+            >
+              {this.state.isSignIn ? "Sign Up" : "Sign In"}
+            </Button>
+          </StyledForm>
+        </StyledAuth>
+      </>
     );
   }
 }

@@ -8,19 +8,18 @@ export const AUTH_FAIL = "auth/authFailed";
 const authRequest = () => ({
   type: AUTH_REQUEST
 });
-const authSuccess = token => ({
+const authSuccess = data => ({
   type: AUTH_SUCCESS,
-  token
+  idToken: data.idToken,
+  localId: data.localId,
+  expiresIn: data.expiresIn
 });
 const authFail = error => ({
   type: AUTH_FAIL,
   error
 });
 
-const uri =
-  "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAT3EDo3l5ZfUmYgM-9M0uQaseNX8TW0HI";
-
-export const auth = (email, password) => {
+export const auth = (email, password, isSignIn) => {
   return dispatch => {
     dispatch(authRequest());
     const payload = {
@@ -28,6 +27,9 @@ export const auth = (email, password) => {
       password,
       returnSecureToken: true
     };
+    const uri = isSignIn
+      ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAT3EDo3l5ZfUmYgM-9M0uQaseNX8TW0HI"
+      : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAT3EDo3l5ZfUmYgM-9M0uQaseNX8TW0HI";
     return axios
       .post(uri, payload)
       .then(res => {
