@@ -16,7 +16,7 @@ class Orders extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchOrders().then(() => {
+    this.props.fetchOrders(this.props.idToken).then(() => {
       this.setState({ fetchingOrders: false });
     });
   }

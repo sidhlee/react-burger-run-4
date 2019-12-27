@@ -4,9 +4,10 @@ import { fetchOrders } from "./actions";
 
 const mapState = state => {
   const {
-    orders: { orders }
+    orders: { orders },
+    auth: { idToken }
   } = state;
-  return { orders };
+  return { orders, idToken };
 };
 
 const actionCreators = {

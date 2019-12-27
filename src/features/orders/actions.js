@@ -14,10 +14,10 @@ const fetchOrdersFail = error => ({
   error
 });
 
-export const fetchOrders = () => {
+export const fetchOrders = token => {
   return dispatch => {
     return axios
-      .get("/orders.json")
+      .get(`/orders.json?auth=${token}`)
       .then(res => {
         dispatch(fetchOrdersSuccess(res.data));
       })

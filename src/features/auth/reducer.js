@@ -4,8 +4,7 @@ const initialState = {
   idToken: null,
   localId: null,
   error: null,
-  loading: false,
-  expiresIn: null
+  loading: false
 };
 
 const authRequest = (state, action) => {
@@ -34,6 +33,13 @@ const authFail = (state, action) => {
   };
 };
 
+const signOut = (state, action) => {
+  return {
+    idToken: null,
+    localId: null
+  };
+};
+
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.AUTH_REQUEST:
@@ -42,6 +48,8 @@ const authReducer = (state = initialState, action) => {
       return authSuccess(state, action);
     case types.AUTH_FAIL:
       return authFail(state, action);
+    case types.AUTH_SIGN_OUT:
+      return signOut(state, action);
     default:
       return state;
   }
