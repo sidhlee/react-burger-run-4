@@ -37,7 +37,21 @@ export const auth = (email, password, isSignIn) => {
         dispatch(authSuccess(res.data));
       })
       .catch(err => {
-        dispatch(authFail(err));
+        // axios handles error differently based on its nature
+        if (err.response) {
+          // server response > 2xx
+          dispatch(
+            authFail("Error: " + err.response.data.error.message)
+          );
+        } else if (err.request) {
+          // request made, but no response from the server
+          dispatch(authFail("Error: No response from the server"));
+          console.log(err.request);
+        } else {
+          // error thrown before sending req
+          dispatch(authFail("Error: request couldn't be made"));
+          console.log(err.config);
+        }
       });
   };
 };

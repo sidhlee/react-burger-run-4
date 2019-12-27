@@ -9,7 +9,14 @@ const StyledAuth = styled.div``;
 const StyledForm = styled.form`
   width: 90%;
   max-width: 500px;
-  margin: 6em auto;
+  margin: 6em auto 1em auto;
+`;
+const StyledErrorMessage = styled.p`
+  border: solid 1px red;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block;
+  margin: auto;
 `;
 
 class Auth extends Component {
@@ -89,6 +96,18 @@ class Auth extends Component {
       this.state.controls.password.value,
       this.state.isSignIn
     );
+    this.setState(prevState => ({
+      controls: {
+        email: {
+          ...this.state.controls.email,
+          value: ""
+        },
+        password: {
+          ...this.state.controls.password,
+          value: ""
+        }
+      }
+    }));
   };
 
   switchAuthMode = () => {
@@ -126,6 +145,10 @@ class Auth extends Component {
         handleChange={e => this.handleChange(e, inputObject.id)}
       />
     ));
+
+    const errorMessage = this.props.error ? (
+      <StyledErrorMessage>{this.props.error}</StyledErrorMessage>
+    ) : null;
     return (
       <>
         {this.props.loading && <Spinner show={this.props.loading} />}
@@ -146,6 +169,7 @@ class Auth extends Component {
               {this.state.isSignIn ? "Sign Up" : "Sign In"}
             </Button>
           </StyledForm>
+          {errorMessage}
         </StyledAuth>
       </>
     );

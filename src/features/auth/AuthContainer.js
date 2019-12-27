@@ -4,10 +4,11 @@ import Auth from "./Auth";
 
 const mapState = state => {
   const {
-    auth: { loading }
+    auth: { loading, error }
   } = state;
   return {
-    loading
+    loading,
+    error
   };
 };
 const actionCreators = {
