@@ -37,10 +37,11 @@ export const auth = (email, password, isSignIn) => {
         dispatch(authSuccess(res.data));
       })
       .catch(err => {
-        // axios handles error differently based on its nature
+        // axios wraps original error obj from firebase
         if (err.response) {
           // server response > 2xx
           dispatch(
+            // show firebase's error message
             authFail("Error: " + err.response.data.error.message)
           );
         } else if (err.request) {
