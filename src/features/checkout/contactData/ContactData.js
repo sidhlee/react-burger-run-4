@@ -131,7 +131,7 @@ class ContactData extends Component {
       orderData: formData
     };
 
-    this.props.orderBurger(order).then(() => {
+    this.props.orderBurger(order, this.props.idToken).then(() => {
       this.setState({ loading: false });
       this.props.history.push("/");
     });

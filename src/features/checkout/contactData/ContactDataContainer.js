@@ -4,9 +4,10 @@ import { orderBurger } from "./actions";
 
 const mapState = state => {
   const {
-    burgerBuilder: { ingredients, totalPrice }
+    burgerBuilder: { ingredients, totalPrice },
+    auth: { idToken }
   } = state;
-  return { ingredients, totalPrice };
+  return { ingredients, totalPrice, idToken };
 };
 
 const actionCreators = {

@@ -20,10 +20,10 @@ const orderFail = error => {
   };
 };
 
-export const orderBurger = order => {
+export const orderBurger = (order, token) => {
   return dispatch => {
     return axios
-      .post("/orders.json", order)
+      .post(`/orders.json?auth=${token}`, order)
       .then(res => {
         dispatch(orderSuccess(res.data.name, order));
       })
