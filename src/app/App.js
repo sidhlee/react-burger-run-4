@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../features/layout/Layout";
+import LayoutContainer from "../features/layout/LayoutContainer";
 import BurgerBuilderContainer from "../features/burgerBuilder/BurgerBuilderContainer";
 import { Route, Switch } from "react-router-dom";
 import CheckoutContainer from "../features/checkout/CheckoutContainer";
@@ -9,7 +9,7 @@ import AuthContainer from "../features/auth/AuthContainer";
 function App() {
   return (
     <div>
-      <Layout>
+      <LayoutContainer>
         <Switch>
           {/* rendering with children element is recommended
         over using component or render prop */}
@@ -19,7 +19,7 @@ function App() {
           <Route path="/orders" component={OrdersContainer} />
           <Route path="/auth" component={AuthContainer} />
         </Switch>
-      </Layout>
+      </LayoutContainer>
     </div>
   );
 }

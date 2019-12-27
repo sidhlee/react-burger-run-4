@@ -27,8 +27,12 @@ class Layout extends Component {
   render() {
     return (
       <StyledLayout>
-        <Toolbar toggleSideDrawer={this.toggleSideDrawer} />
+        <Toolbar
+          isAuthenticated={this.props.isAuthenticated}
+          toggleSideDrawer={this.toggleSideDrawer}
+        />
         <SideDrawer
+          isAuthenticated={this.props.isAuthenticated}
           closeSideDrawer={this.closeSideDrawer}
           sideDrawerOpened={this.state.sideDrawerOpened}
         />
