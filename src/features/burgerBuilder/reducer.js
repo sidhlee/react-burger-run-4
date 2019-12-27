@@ -12,7 +12,8 @@ const INGREDIENT_PRICES = {
 const initialState = {
   ingredients: null,
   totalPrice: BASE_PRICE,
-  fetchError: false
+  fetchError: false,
+  building: false
 };
 
 const ingredientAdded = (state, action) => {
@@ -26,7 +27,8 @@ const ingredientAdded = (state, action) => {
   return {
     ...state,
     ingredients: updatedIngredients,
-    totalPrice: updatedTotalPrice
+    totalPrice: updatedTotalPrice,
+    building: true
   };
 };
 const ingredientRemoved = (state, action) => {
@@ -42,7 +44,8 @@ const ingredientRemoved = (state, action) => {
   return {
     ...state,
     ingredients: updatedIngredients,
-    totalPrice: updatedTotalPrice
+    totalPrice: updatedTotalPrice,
+    building: true
   };
 };
 const fetchIngredientsSuccess = (state, action) => {
@@ -67,6 +70,13 @@ const fetchIngredientsFail = (state, action) => {
   };
 };
 
+const orderStarted = (state, action) => {
+  return {
+    ...state,
+    building: true
+  };
+};
+
 const burgerBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.INGREDIENT_ADDED:
@@ -77,6 +87,8 @@ const burgerBuilderReducer = (state = initialState, action) => {
       return fetchIngredientsSuccess(state, action);
     case types.FETCH_INGREDIENTS_FAIL:
       return fetchIngredientsFail(state, action);
+    case types.ORDER_STARTED:
+      return orderStarted(state, action);
     default:
       return state;
   }

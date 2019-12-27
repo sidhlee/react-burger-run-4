@@ -34,9 +34,9 @@ const BuildControls = props => {
       {controls}
       <OrderButton
         disabled={!props.purchasable}
-        clicked={props.beginOrder}
+        clicked={props.startOrder}
       >
-        Order Now
+        {props.isAuthenticated ? "Order Now" : "Sign In to Order"}
       </OrderButton>
     </Wrapper>
   );

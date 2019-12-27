@@ -26,6 +26,11 @@ This is the 4th run of building burger-builder with react and redux.
   - Separate Container Component that wraps the feature.
   - Object shorthand for mapDispatchToProps.
   - Renamed mapDispatchToProps to actionCreators.
+- Better Redirecting behavior for "Sign In to Order" button.
+  - Redirects to "/checkout" if initial burger is modified
+  - Or if came to "/auth" from clicking "Sign In to Order" button
+    - This will redirect user to "/checkout" even if the user hasn't modified initialized burger.
+  - The user is redirected to "/" if came to "/auth" page by navigation.
 
 ## Discovered:
 

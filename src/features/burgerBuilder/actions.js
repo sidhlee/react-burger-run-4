@@ -7,6 +7,7 @@ export const FETCH_INGREDIENTS_SUCCESS =
   "burgerBuilder/fetchIngredientsSuccess";
 export const FETCH_INGREDIENTS_FAIL =
   "burgerBuilder/fetchIngredientsFail";
+export const ORDER_STARTED = "burgerBuilder/orderStarted";
 
 /* Sync action creators */
 export const addIngredient = id => ({
@@ -17,6 +18,10 @@ export const addIngredient = id => ({
 export const removeIngredient = id => ({
   type: INGREDIENT_REMOVED,
   id
+});
+
+export const startOrder = id => ({
+  type: ORDER_STARTED
 });
 
 /* Async action creators */

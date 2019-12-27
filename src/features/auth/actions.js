@@ -1,14 +1,20 @@
 import axios from "axios";
 
 /* Action types */
-export const AUTH_REQUEST = "auth/authRequested";
-export const AUTH_SUCCESS = "auth/authSucceeded";
-export const AUTH_FAIL = "auth/authFailed";
-export const AUTH_SIGN_OUT = "auth/authSignOut";
+export const AUTH_REQUEST = "auth/requested";
+export const AUTH_SUCCESS = "auth/succeeded";
+export const AUTH_FAIL = "auth/failed";
+export const AUTH_SIGN_OUT = "auth/signOut";
+export const AUTH_REDIRECT_PATH_SET = "auth/redirectPathSet";
 
 /* Sync action creators */
 export const signOut = () => ({
   type: AUTH_SIGN_OUT
+});
+
+export const setAuthRedirectPath = authRedirectPath => ({
+  type: AUTH_REDIRECT_PATH_SET,
+  authRedirectPath
 });
 
 /* Async action creators */

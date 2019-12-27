@@ -58,6 +58,12 @@ class Auth extends Component {
     isSignIn: true
   };
 
+  componentDidMount() {
+    if (!this.props.building && this.props.authRedirectPath !== "/") {
+      this.props.setAuthRedirectPath("/");
+    }
+  }
+
   handleChange = (e, id) => {
     const updatedControls = {
       ...this.state.controls,
@@ -153,7 +159,9 @@ class Auth extends Component {
     return (
       <>
         {this.props.loading && <Spinner show={this.props.loading} />}
-        {this.props.isAuthenticated ? <Redirect to="/" /> : null}
+        {this.props.isAuthenticated ? (
+          <Redirect to={this.props.authRedirectPath} />
+        ) : null}
         <StyledAuth>
           <StyledForm onSubmit={this.handleSubmit}>
             {inputs}

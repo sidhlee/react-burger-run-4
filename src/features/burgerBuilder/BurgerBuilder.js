@@ -35,8 +35,14 @@ export class BurgerBuilder extends Component {
     return totalQty > 0;
   };
 
-  beginOrder = () => {
-    this.setState({ ordering: true });
+  startOrder = () => {
+    if (this.props.isAuthenticated) {
+      this.setState({ ordering: true });
+    } else {
+      this.props.startOrder();
+      this.props.setAuthRedirectPath("/checkout");
+      this.props.history.push("/auth");
+    }
   };
 
   cancelOrder = () => {
@@ -63,7 +69,8 @@ export class BurgerBuilder extends Component {
           totalPrice={this.props.totalPrice}
           // updatePurchasable gets called every time this is re-rendered
           purchasable={this.updatePurchasable()}
-          beginOrder={this.beginOrder}
+          startOrder={this.startOrder}
+          isAuthenticated={this.props.isAuthenticated}
         />
       </>
     ) : null;
