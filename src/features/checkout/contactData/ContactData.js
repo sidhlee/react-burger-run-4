@@ -20,6 +20,7 @@ const StyledForm = styled.form``;
 class ContactData extends Component {
   state = {
     orderForm: {
+      // TODO: Add autoFocus to name input
       name: {
         inputType: "input",
         config: {

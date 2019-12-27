@@ -22,6 +22,7 @@ const StyledErrorMessage = styled.p`
 
 class Auth extends Component {
   state = {
+    // TODO: Add autoFocus to first input control
     controls: {
       email: {
         inputType: "input",

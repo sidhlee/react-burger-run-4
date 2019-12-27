@@ -16,6 +16,8 @@ const BurgerWrapper = styled.div`
   margin: -30px auto 0 auto;
 `;
 
+// TODO: set height only high as the height of the burger (remove empty spaces)
+// don't need extra space because user can't modify burger at this point
 const CheckoutSummary = props => (
   <StyledCheckoutSummary>
     <h1>Here's your tasty burger!</h1>
