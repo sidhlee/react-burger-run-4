@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import CheckoutContainer from "../features/checkout/CheckoutContainer";
 import OrdersContainer from "../features/orders/OrdersContainer";
 import AuthContainer from "../features/auth/AuthContainer";
+import SignOutContainer from "../features/auth/SignOutContainer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/orders" component={OrdersContainer} />
           <Route path="/auth" component={AuthContainer} />
+          <Route path="/signout" component={SignOutContainer} />
         </Switch>
       </LayoutContainer>
     </div>
