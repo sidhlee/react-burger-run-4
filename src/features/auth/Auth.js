@@ -98,7 +98,13 @@ class Auth extends Component {
       <StyledAuth>
         <StyledForm>
           {inputs}
-          <Button btnType="Success">Sign in</Button>
+          <Button
+            btnType="Success"
+            disabled={!this.state.isFormValid}
+          >
+            Sign up
+          </Button>
+          <Button btnType="Danger">Sign in</Button>
         </StyledForm>
       </StyledAuth>
     );
