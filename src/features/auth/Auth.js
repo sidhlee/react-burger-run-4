@@ -98,7 +98,7 @@ class Auth extends Component {
       <StyledAuth>
         <StyledForm>
           {inputs}
-          <Button btnType="Success">Signup</Button>
+          <Button btnType="Success">Sign in</Button>
         </StyledForm>
       </StyledAuth>
     );
