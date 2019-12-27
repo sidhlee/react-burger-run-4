@@ -19,7 +19,7 @@ function App() {
           <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/orders" component={OrdersContainer} />
           <Route path="/auth" component={AuthContainer} />
-          <Route path="/signout" component={SignOutContainer} />
+          <Route path="/sign-out" component={SignOutContainer} />
         </Switch>
       </LayoutContainer>
     </div>

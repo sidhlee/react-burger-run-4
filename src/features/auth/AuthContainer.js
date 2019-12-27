@@ -4,11 +4,12 @@ import Auth from "./Auth";
 
 const mapState = state => {
   const {
-    auth: { loading, error }
+    auth: { loading, error, idToken }
   } = state;
   return {
     loading,
-    error
+    error,
+    isAuthenticated: idToken !== null
   };
 };
 const actionCreators = {

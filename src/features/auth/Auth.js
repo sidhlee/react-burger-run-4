@@ -4,6 +4,7 @@ import { checkValidity } from "../../common/validation/";
 import Input from "../../common/UI/Input";
 import Button from "../../common/UI/Button";
 import Spinner from "../../common/UI/Spinner/Spinner";
+import { Redirect } from "react-router-dom";
 
 const StyledAuth = styled.div``;
 const StyledForm = styled.form`
@@ -152,6 +153,7 @@ class Auth extends Component {
     return (
       <>
         {this.props.loading && <Spinner show={this.props.loading} />}
+        {this.props.isAuthenticated ? <Redirect to="/" /> : null}
         <StyledAuth>
           <StyledForm onSubmit={this.handleSubmit}>
             {inputs}
