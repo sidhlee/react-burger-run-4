@@ -151,6 +151,7 @@ class ContactData extends Component {
     };
     const input = updatedOrderForm[id];
     input.valid = checkValidity(input.value, input.validation);
+    // return false if ANY of the input is invalid
     const isFormValid = Object.keys(updatedOrderForm).reduce(
       (bool, id) => {
         bool = this.state.orderForm[id].valid && bool;

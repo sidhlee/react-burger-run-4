@@ -4,6 +4,7 @@ import BurgerBuilderContainer from "../features/burgerBuilder/BurgerBuilderConta
 import { Route, Switch } from "react-router-dom";
 import CheckoutContainer from "../features/checkout/CheckoutContainer";
 import OrdersContainer from "../features/orders/OrdersContainer";
+import Auth from "../features/auth/Auth";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" exact component={BurgerBuilderContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/orders" component={OrdersContainer} />
+          <Route path="/auth" component={Auth} />
         </Switch>
       </Layout>
     </div>
