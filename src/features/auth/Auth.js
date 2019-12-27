@@ -60,8 +60,16 @@ class Auth extends Component {
   };
 
   componentDidMount() {
+    // reset redirect path if user is not building OR it's already "/"
+    // We're always redirected to the root unless building.
     if (!this.props.building && this.props.authRedirectPath !== "/") {
       this.props.setAuthRedirectPath("/");
+    } else {
+      // will reset building status to false every time auth page is visited
+      // But the redirect path set previously will not change
+      // (e.g. It is set to "/checkout" when user clicks order button on root page.
+      //  But if the user clicks on the link to come to auth page, they'll be redirected to "/" )
+      this.props.resetBuilding();
     }
   }
 

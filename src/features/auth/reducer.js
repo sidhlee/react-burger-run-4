@@ -36,6 +36,7 @@ const authFail = (state, action) => {
 
 const signOut = (state, action) => {
   return {
+    ...state,
     idToken: null,
     localId: null
   };

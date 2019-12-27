@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { auth, setAuthRedirectPath } from "./actions";
+import { resetBuilding } from "../burgerBuilder/actions";
 import Auth from "./Auth";
 
 const mapState = state => {
@@ -17,7 +18,8 @@ const mapState = state => {
 };
 const actionCreators = {
   auth,
-  setAuthRedirectPath
+  setAuthRedirectPath,
+  resetBuilding
 };
 
 export default connect(mapState, actionCreators)(Auth);
