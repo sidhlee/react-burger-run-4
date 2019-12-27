@@ -22,7 +22,6 @@ const authSuccess = (state, action) => {
     loading: false,
     idToken: action.idToken,
     localId: action.localId,
-    expiresIn: action.expiresIn,
     error: null
   };
 };

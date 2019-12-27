@@ -1,8 +1,15 @@
 import axios from "axios";
 
+/* Action types */
 export const AUTH_REQUEST = "auth/authRequested";
 export const AUTH_SUCCESS = "auth/authSucceeded";
 export const AUTH_FAIL = "auth/authFailed";
+export const AUTH_SIGN_OUT = "auth/authSignOut";
+
+/* Sync action creators */
+export const signOut = () => ({
+  type: AUTH_SIGN_OUT
+});
 
 /* Async action creators */
 const authRequest = () => ({
@@ -11,13 +18,20 @@ const authRequest = () => ({
 const authSuccess = data => ({
   type: AUTH_SUCCESS,
   idToken: data.idToken,
-  localId: data.localId,
-  expiresIn: data.expiresIn
+  localId: data.localId
 });
 const authFail = error => ({
   type: AUTH_FAIL,
   error
 });
+
+const checkAuthTimeout = seconds => {
+  return dispatch => {
+    setTimeout(() => {
+      signOut();
+    }, seconds * 1000);
+  };
+};
 
 export const auth = (email, password, isSignIn) => {
   return dispatch => {
@@ -35,6 +49,7 @@ export const auth = (email, password, isSignIn) => {
       .then(res => {
         console.log(res);
         dispatch(authSuccess(res.data));
+        dispatch(checkAuthTimeout(res.data.expiresIn));
       })
       .catch(err => {
         // axios wraps original error obj from firebase
