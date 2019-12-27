@@ -151,20 +151,27 @@ class ContactData extends Component {
     };
     const input = updatedOrderForm[id];
     input.valid = checkValidity(input.value, input.validation);
-    // return false if ANY of the input is invalid
-    const isFormValid = Object.keys(updatedOrderForm).reduce(
-      (bool, id) => {
-        bool = this.state.orderForm[id].valid && bool;
-        return bool;
-      },
-      true
-    );
 
-    this.setState({
-      ...this.state,
-      orderForm: updatedOrderForm,
-      isFormValid: isFormValid
-    });
+    this.setState(
+      {
+        ...this.state,
+        orderForm: updatedOrderForm
+      },
+      () => {
+        // return false if ANY of the input is invalid
+        const isFormValid = Object.keys(updatedOrderForm).reduce(
+          (bool, id) => {
+            bool = this.state.orderForm[id].valid && bool;
+            return bool;
+          },
+          true
+        );
+        this.setState({
+          ...this.state,
+          isFormValid
+        });
+      }
+    );
   };
   render() {
     const inputObjects = Object.keys(this.state.orderForm).map(

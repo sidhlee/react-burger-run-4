@@ -59,20 +59,35 @@ class Auth extends Component {
     };
     const input = updatedControls[id];
     input.valid = checkValidity(input.value, input.validation);
-    // return false if ANY of the input is invalid
-    const isFormValid = Object.keys(updatedControls).reduce(
-      (bool, id) => {
-        bool = this.state.controls[id].valid && bool;
-        return bool;
-      },
-      true
-    );
 
-    this.setState({
-      ...this.state,
-      controls: updatedControls,
-      isFormValid: isFormValid
-    });
+    this.setState(
+      {
+        ...this.state,
+        controls: updatedControls
+      },
+      () => {
+        // return false if ANY of the input is invalid
+        const isFormValid = Object.keys(updatedControls).reduce(
+          (bool, id) => {
+            bool = this.state.controls[id].valid && bool;
+            return bool;
+          },
+          true
+        );
+        this.setState({
+          ...this.state,
+          isFormValid
+        });
+      }
+    );
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.auth(
+      this.state.email.value,
+      this.state.password.value
+    );
   };
 
   render() {
@@ -96,7 +111,7 @@ class Auth extends Component {
     ));
     return (
       <StyledAuth>
-        <StyledForm>
+        <StyledForm onSubmit={this.handleSubmit}>
           {inputs}
           <Button
             btnType="Success"
