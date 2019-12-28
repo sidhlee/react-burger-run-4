@@ -5,9 +5,9 @@ import { orderBurger } from "./actions";
 const mapState = state => {
   const {
     burgerBuilder: { ingredients, totalPrice },
-    auth: { idToken }
+    auth: { idToken, localId }
   } = state;
-  return { ingredients, totalPrice, idToken };
+  return { ingredients, totalPrice, idToken, localId };
 };
 
 const actionCreators = {
