@@ -12,24 +12,26 @@ class App extends Component {
     this.props.checkAuthStatus();
   }
   render() {
+    const routes = this.props.isAuthenticated ? (
+      <Switch>
+        {/* rendering with children element is recommended
+          over using component or render prop */}
+        {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
+        <Route path="/" exact component={BurgerBuilderContainer} />
+        <Route path="/checkout" component={CheckoutContainer} />
+        <Route path="/orders" component={OrdersContainer} />
+        <Route path="/sign-out" component={SignOutContainer} />
+      </Switch>
+    ) : (
+      <Switch>
+        <Route path="/" exact component={BurgerBuilderContainer} />
+        <Route path="/auth" component={AuthContainer} />
+      </Switch>
+    );
+
     return (
       <div>
-        <LayoutContainer>
-          <Switch>
-            {/* rendering with children element is recommended
-          over using component or render prop */}
-            {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
-            <Route
-              path="/"
-              exact
-              component={BurgerBuilderContainer}
-            />
-            <Route path="/checkout" component={CheckoutContainer} />
-            <Route path="/orders" component={OrdersContainer} />
-            <Route path="/auth" component={AuthContainer} />
-            <Route path="/sign-out" component={SignOutContainer} />
-          </Switch>
-        </LayoutContainer>
+        <LayoutContainer>{routes}</LayoutContainer>
       </div>
     );
   }
