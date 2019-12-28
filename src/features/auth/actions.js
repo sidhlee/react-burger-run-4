@@ -99,6 +99,8 @@ export const checkAuthStatus = () => {
       const expirationDate = new Date(
         localStorage.getItem("expirationDate")
       );
+      // Auto-sign-in only when there's idToken in localStorage
+      // && expirationDate is later than now
       if (new Date() < expirationDate) {
         const data = {
           idToken,

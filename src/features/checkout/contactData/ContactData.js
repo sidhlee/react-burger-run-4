@@ -80,6 +80,7 @@ class ContactData extends Component {
         touched: false,
         valid: false
       },
+      // TODO: get email value from auth info
       email: {
         inputType: "input",
         config: {

@@ -14,10 +14,12 @@ const fetchOrdersFail = error => ({
   error
 });
 
-export const fetchOrders = token => {
+export const fetchOrders = (token, localId) => {
   return dispatch => {
+    // https://firebase.google.com/docs/database/rest/retrieve-data#section-rest-filtering
+    const queryParams = `?auth=${token}&orderBy="localId"&equalTo="${localId}"`;
     return axios
-      .get(`/orders.json?auth=${token}`)
+      .get(`/orders.json` + queryParams)
       .then(res => {
         dispatch(fetchOrdersSuccess(res.data));
       })

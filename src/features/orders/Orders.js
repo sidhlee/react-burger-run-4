@@ -3,8 +3,8 @@ import styled from "styled-components";
 import axios from "../../common/axios-orders";
 import withErrorHandler from "../../common/hoc/withErrorHandler";
 import Spinner from "../../common/UI/Spinner/Spinner";
-
 import Order from "./Order";
+import { Redirect } from "react-router-dom";
 
 const StyledOrders = styled.div`
   margin-top: var(--margin-top);
@@ -16,9 +16,13 @@ class Orders extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchOrders(this.props.idToken).then(() => {
-      this.setState({ fetchingOrders: false });
-    });
+    if (this.props.idToken) {
+      this.props
+        .fetchOrders(this.props.idToken, this.props.localId)
+        .then(() => {
+          this.setState({ fetchingOrders: false });
+        });
+    }
   }
 
   render() {
@@ -33,6 +37,7 @@ class Orders extends Component {
         ));
     return (
       <>
+        {!this.props.idToken && <Redirect to="/" />}
         {this.state.fetchingOrders && (
           <Spinner show={this.fetchingOrders} />
         )}
