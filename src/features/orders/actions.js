@@ -17,6 +17,7 @@ const fetchOrdersFail = error => ({
 export const fetchOrders = (token, localId) => {
   return dispatch => {
     // https://firebase.google.com/docs/database/rest/retrieve-data#section-rest-filtering
+    // query only orders from currently signed-in user
     const queryParams = `?auth=${token}&orderBy="localId"&equalTo="${localId}"`;
     return axios
       .get(`/orders.json` + queryParams)
