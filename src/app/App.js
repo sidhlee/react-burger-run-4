@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LayoutContainer from "../features/layout/LayoutContainer";
 import BurgerBuilderContainer from "../features/burgerBuilder/BurgerBuilderContainer";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import CheckoutContainer from "../features/checkout/CheckoutContainer";
 import OrdersContainer from "../features/orders/OrdersContainer";
 import AuthContainer from "../features/auth/AuthContainer";
@@ -21,11 +21,23 @@ class App extends Component {
         <Route path="/checkout" component={CheckoutContainer} />
         <Route path="/orders" component={OrdersContainer} />
         <Route path="/sign-out" component={SignOutContainer} />
+        {/* 
+        Here, auth route cannot be manually accessed because 
+        App will re-mount when Auth page is loaded manually and run auto-auth
+        and if authenticated, Auth page will redirect to redirect path,
+        which is set to "/" unless visited from clicking Order button.
+        We need to include auth page here in order to redirect user 
+        to the checkout page after being authenticated. (If there's no
+        Auth page after being authenticated, there's no redirect)
+        */}
+        <Route path="/auth" component={AuthContainer} />
+        <Redirect to="/" />
       </Switch>
     ) : (
       <Switch>
         <Route path="/" exact component={BurgerBuilderContainer} />
         <Route path="/auth" component={AuthContainer} />
+        <Redirect to="/" />
       </Switch>
     );
 
