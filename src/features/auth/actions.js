@@ -57,7 +57,7 @@ export const auth = (email, password, isSignIn) => {
         // persist auth data into localStorage
         localStorage.setItem("idToken", res.data.idToken);
         const expirationDate = new Date(
-          new Date().getTime + res.data.expiresIn * 1000
+          new Date().getTime() + res.data.expiresIn * 1000
         );
         localStorage.setItem("expirationDate", expirationDate);
 
