@@ -31,6 +31,10 @@ This is the 4th run of building burger-builder with react and redux.
   - Or if came to "/auth" from clicking "Sign In to Order" button
     - This will redirect user to "/checkout" even if the user hasn't modified initialized burger.
   - The user is redirected to "/" if came to "/auth" page by navigation.
+  - This also work great with guarding pages against un-authorized access.
+    - can included Auth page in the routes after authenticated in order to redirect users to checkout page.
+    - Users will be redirected to the root page if manually access auth page.
+    - and when authenticated, Sign-in NavLink is gone, so there is no way to access auth page.
 
 ## Discovered:
 
