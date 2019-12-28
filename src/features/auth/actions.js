@@ -8,9 +8,12 @@ export const AUTH_SIGN_OUT = "auth/signOut";
 export const AUTH_REDIRECT_PATH_SET = "auth/redirectPathSet";
 
 /* Sync action creators */
-export const signOut = () => ({
-  type: AUTH_SIGN_OUT
-});
+export const signOut = () => {
+  localStorage.removeItem("idToken");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("localId");
+  return { type: AUTH_SIGN_OUT };
+};
 
 export const setAuthRedirectPath = authRedirectPath => ({
   type: AUTH_REDIRECT_PATH_SET,
@@ -56,6 +59,7 @@ export const auth = (email, password, isSignIn) => {
         console.log(res);
         // persist auth data into localStorage
         localStorage.setItem("idToken", res.data.idToken);
+        localStorage.setItem("localId", res.data.localId);
         const expirationDate = new Date(
           new Date().getTime() + res.data.expiresIn * 1000
         );
@@ -82,5 +86,31 @@ export const auth = (email, password, isSignIn) => {
           console.log(err.config);
         }
       });
+  };
+};
+
+export const checkAuthStatus = () => {
+  return dispatch => {
+    const idToken = localStorage.getItem("idToken");
+    const localId = localStorage.getItem("localId");
+    if (!idToken) {
+      dispatch(signOut());
+    } else {
+      const expirationDate = new Date(
+        localStorage.getItem("expirationDate")
+      );
+      if (new Date() < expirationDate) {
+        const data = {
+          idToken,
+          localId
+        };
+        dispatch(authSuccess(data));
+        const remainingSeconds =
+          (expirationDate.getTime() - new Date().getTime()) / 1000;
+        dispatch(checkAuthTimeout(remainingSeconds));
+      } else {
+        dispatch(signOut());
+      }
+    }
   };
 };
