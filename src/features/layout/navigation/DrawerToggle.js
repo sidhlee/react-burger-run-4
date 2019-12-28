@@ -14,7 +14,8 @@ const Wrapper = styled.div`
   margin: 12px 0;
   transition: all 0.2s ease-out;
   &:hover {
-    transform: rotate(0.5turn);
+    /* transform: rotate(0.5turn); */
+    cursor: pointer;
   }
   /* don't need toggler on larger devices */
   @media (min-width: 576px) {
