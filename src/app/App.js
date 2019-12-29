@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import LayoutContainer from "../features/layout/LayoutContainer";
 import BurgerBuilderContainer from "../features/burgerBuilder/BurgerBuilderContainer";
 import { Route, Switch, Redirect } from "react-router-dom";
-import CheckoutContainer from "../features/checkout/CheckoutContainer";
-import OrdersContainer from "../features/orders/OrdersContainer";
-import AuthContainer from "../features/auth/AuthContainer";
 import SignOutContainer from "../features/auth/SignOutContainer";
+import asyncComponent from "../common/hoc/asyncComponent";
+
+const asyncAuth = asyncComponent(() =>
+  import("../features/auth/AuthContainer")
+);
+const asyncCheckout = asyncComponent(() =>
+  import("../features/checkout/CheckoutContainer")
+);
+const asyncOrders = asyncComponent(() =>
+  import("../features/orders/OrdersContainer")
+);
 
 class App extends Component {
   componentDidMount() {
@@ -18,8 +26,8 @@ class App extends Component {
           over using component or render prop */}
         {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
         <Route path="/" exact component={BurgerBuilderContainer} />
-        <Route path="/checkout" component={CheckoutContainer} />
-        <Route path="/orders" component={OrdersContainer} />
+        <Route path="/checkout" component={asyncCheckout} />
+        <Route path="/orders" component={asyncOrders} />
         <Route path="/sign-out" component={SignOutContainer} />
         {/* 
         Here, auth route cannot be manually accessed because 
@@ -30,13 +38,13 @@ class App extends Component {
         to the checkout page after being authenticated. (If there's no
         Auth page after being authenticated, there's no redirect)
         */}
-        <Route path="/auth" component={AuthContainer} />
+        <Route path="/auth" component={asyncAuth} />
         <Redirect to="/" />
       </Switch>
     ) : (
       <Switch>
         <Route path="/" exact component={BurgerBuilderContainer} />
-        <Route path="/auth" component={AuthContainer} />
+        <Route path="/auth" component={asyncAuth} />
         <Redirect to="/" />
       </Switch>
     );
