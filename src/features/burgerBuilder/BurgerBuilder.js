@@ -85,7 +85,7 @@ export class BurgerBuilder extends Component {
       </Modal>
     ) : null;
     return (
-      <Wrapper>
+      <Wrapper {...this.props}>
         {this.state.fetchingIngredients && <Spinner />}
         {orderSummary}
         {burgerAndControls}
