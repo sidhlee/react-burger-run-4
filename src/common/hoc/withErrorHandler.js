@@ -1,65 +1,61 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "../UI/Modal";
 
 const withErrorHandler = (C, axios) => {
-  return class extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        error: null
-      };
-      this.reqInterceptor = axios.interceptors.request.use(req => {
-        this.setState({ error: null });
-        return req; // return req (it's a middleware)
-      });
-      this.resInterceptor = axios.interceptors.response.use(
-        null,
-        error => {
-          let errMsg;
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            errMsg = [
-              JSON.stringify(error.response.status),
-              JSON.stringify(error.response.data)
-            ];
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            errMsg = error.request;
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            errMsg = error.message;
-          }
-          this.setState({ error: errMsg });
-          // can do something with error later
-          return Promise.reject(error);
+  return props => {
+    const [error, setError] = useState(null);
+
+    // Moved req/resInterceptor out of constructor to the top level
+    // These will run before rendering(returning) anything.
+    const reqInterceptor = axios.interceptors.request.use(req => {
+      setError(null);
+      return req; // return req (it's a middleware)
+    });
+
+    const resInterceptor = axios.interceptors.response.use(
+      null,
+      err => {
+        let errMsg;
+        if (err.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          errMsg = [
+            JSON.stringify(err.response.status),
+            JSON.stringify(err.response.data)
+          ];
+        } else if (err.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          errMsg = err.request;
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          errMsg = err.message;
         }
-      );
-    }
+        setError(errMsg);
+        // can do something with error later
+        return Promise.reject(err);
+      }
+    );
+    useEffect(() => {
+      return () => {
+        axios.interceptors.request.eject(reqInterceptor);
+        axios.interceptors.response.eject(resInterceptor);
+      };
+    }, [reqInterceptor, resInterceptor]);
 
-    componentWillUnmount() {
-      axios.interceptors.request.eject(this.reqInterceptor);
-      axios.interceptors.response.eject(this.resInterceptor);
-    }
-
-    closeErrorModal = () => {
-      this.setState({ error: null });
+    const closeErrorModal = () => {
+      setError(null);
     };
-    render() {
-      return (
-        <>
-          <Modal
-            show={this.state.error}
-            closeModal={this.closeErrorModal}
-          >
-            {this.state.error && this.state.error}
-          </Modal>
-          <C {...this.props} />
-        </>
-      );
-    }
+
+    return (
+      <>
+        <Modal show={error} closeModal={closeErrorModal}>
+          {error && error}
+        </Modal>
+        <C {...props} />
+      </>
+    );
   };
 };
 
