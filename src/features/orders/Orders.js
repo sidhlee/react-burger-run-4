@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "../../common/axios-orders";
 import withErrorHandler from "../../common/hoc/withErrorHandler";
@@ -9,38 +9,29 @@ const StyledOrders = styled.div`
   margin-top: var(--margin-top);
 `;
 
-class Orders extends Component {
-  state = {
-    fetchingOrders: true
-  };
+const Orders = ({ idToken, localId, fetchOrders, ...props }) => {
+  const [fetchingOrders, setFetchingOrders] = useState(true);
+  useEffect(() => {
+    fetchOrders(idToken, localId).then(() => {
+      setFetchingOrders(false);
+    });
+  }, [idToken, localId, fetchOrders]);
 
-  componentDidMount() {
-    this.props
-      .fetchOrders(this.props.idToken, this.props.localId)
-      .then(() => {
-        this.setState({ fetchingOrders: false });
-      });
-  }
-
-  render() {
-    const orders = this.state.fetchingOrders
-      ? null
-      : this.props.orders.map(order => (
-          <Order
-            key={order.id}
-            ingredients={order.ingredients}
-            totalPrice={order.totalPrice}
-          />
-        ));
-    return (
-      <>
-        {this.state.fetchingOrders && (
-          <Spinner show={this.fetchingOrders} />
-        )}
-        <StyledOrders>{orders}</StyledOrders>
-      </>
-    );
-  }
-}
+  const orders = fetchingOrders
+    ? null
+    : props.orders.map(order => (
+        <Order
+          key={order.id}
+          ingredients={order.ingredients}
+          totalPrice={order.totalPrice}
+        />
+      ));
+  return (
+    <>
+      {fetchingOrders && <Spinner show={fetchingOrders} />}
+      <StyledOrders>{orders}</StyledOrders>
+    </>
+  );
+};
 
 export default withErrorHandler(Orders, axios);
