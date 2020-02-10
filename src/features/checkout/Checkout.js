@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import CheckoutSummary from "./CheckoutSummary";
 import { Route, Redirect } from "react-router-dom";
@@ -8,34 +8,32 @@ import withErrorHandler from "../../common/hoc/withErrorHandler";
 
 const StyledCheckout = styled.div``;
 
-class Checkout extends Component {
-  cancelCheckout = () => {
-    this.props.history.goBack();
+const Checkout = props => {
+  const cancelCheckout = () => {
+    props.history.goBack();
   };
-  continueCheckout = () => {
-    this.props.history.replace("/checkout/contact-data");
+  const continueCheckout = () => {
+    props.history.replace("/checkout/contact-data");
   };
 
-  render() {
-    const summary = this.props.ingredients ? (
-      <CheckoutSummary
-        ingredients={this.props.ingredients}
-        cancelCheckout={this.cancelCheckout}
-        continueCheckout={this.continueCheckout}
+  const summary = props.ingredients ? (
+    <CheckoutSummary
+      ingredients={props.ingredients}
+      cancelCheckout={cancelCheckout}
+      continueCheckout={continueCheckout}
+    />
+  ) : (
+    <Redirect to="/" />
+  );
+  return (
+    <StyledCheckout>
+      {summary}
+      <Route
+        path={props.match.path + "/contact-data"}
+        component={ContactDataContainer}
       />
-    ) : (
-      <Redirect to="/" />
-    );
-    return (
-      <StyledCheckout>
-        {summary}
-        <Route
-          path={this.props.match.path + "/contact-data"}
-          component={ContactDataContainer}
-        />
-      </StyledCheckout>
-    );
-  }
-}
+    </StyledCheckout>
+  );
+};
 
 export default withErrorHandler(Checkout, axios);

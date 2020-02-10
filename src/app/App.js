@@ -24,8 +24,11 @@ const App = ({ checkAuthStatus, isAuthenticated }) => {
           over using component or render prop */}
       {/* <Route /> passes the routing props to children if (and only if) children is a function. */}
       <Route path="/" exact component={BurgerBuilderContainer} />
-      <Route path="/checkout" render={() => <Checkout />} />
-      <Route path="/orders" render={() => <Orders />} />
+      <Route
+        path="/checkout"
+        render={props => <Checkout {...props} />}
+      />
+      <Route path="/orders" render={props => <Orders {...props} />} />
       <Route path="/sign-out" component={SignOutContainer} />
       {/* 
         Here, auth route cannot be manually accessed because 
@@ -36,13 +39,13 @@ const App = ({ checkAuthStatus, isAuthenticated }) => {
         to the checkout page after being authenticated. (If there's no
         Auth page after being authenticated, there's no redirect)
         */}
-      <Route path="/auth" render={() => <Auth />} />
+      <Route path="/auth" render={props => <Auth {...props} />} />
       <Redirect to="/" />
     </Switch>
   ) : (
     <Switch>
       <Route path="/" exact component={BurgerBuilderContainer} />
-      <Route path="/auth" render={() => <Auth />} />
+      <Route path="/auth" render={props => <Auth {...props} />} />
       <Redirect to="/" />
     </Switch>
   );
