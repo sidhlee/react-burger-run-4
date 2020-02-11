@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Burger from "./Burger/Burger";
 import BuildControls from "./Burger/BuildControls";
@@ -13,85 +13,83 @@ import withErrorHandler from "../../common/hoc/withErrorHandler";
 
 const Wrapper = styled.div``;
 
-export class BurgerBuilder extends Component {
+export const BurgerBuilder = ({ initIngredients, ...props }) => {
   // local UI states only
-  state = {
-    ordering: false,
-    fetchingIngredients: false
-  };
+  const [ordering, setOrdering] = useState(false);
+  const [fetchingIngredients, setFetchingIngredients] = useState(
+    false
+  );
 
-  componentDidMount() {
-    this.setState({ fetchingIngredients: true });
-    this.props.initIngredients().then(() => {
-      this.setState({ fetchingIngredients: false });
+  useEffect(() => {
+    setFetchingIngredients(true);
+    initIngredients().then(() => {
+      setFetchingIngredients(false);
     });
-  }
+  }, [initIngredients]);
 
-  updatePurchasable = () => {
-    if (!this.props.ingredients) return false;
-    const totalQty = Object.values(this.props.ingredients).reduce(
+  const updatePurchasable = () => {
+    if (!props.ingredients) return false;
+    const totalQty = Object.values(props.ingredients).reduce(
       (a, b) => a + b
     );
     return totalQty > 0;
   };
 
-  startOrder = () => {
-    if (this.props.isAuthenticated) {
-      this.setState({ ordering: true });
+  const startOrder = () => {
+    if (props.isAuthenticated) {
+      setOrdering(true);
     } else {
-      this.props.startOrder();
-      this.props.setAuthRedirectPath("/checkout");
-      this.props.history.push("/auth");
+      props.startOrder();
+      props.setAuthRedirectPath("/checkout");
+      props.history.push("/auth");
     }
   };
 
-  cancelOrder = () => {
-    this.setState({ ordering: false });
+  const cancelOrder = () => {
+    setOrdering(false);
   };
 
-  continueOrder = () => {
-    this.props.history.push("/checkout");
+  const continueOrder = () => {
+    props.history.push("/checkout");
   };
 
-  render() {
-    const burgerAndControls = this.props.fetchError ? (
-      // TODO: why <p> doesn't work with marginTop style here? other styles like color work though.
-      <div style={{ marginTop: "10em" }}>
-        Ingredients cannot be loaded from the server.
-      </div>
-    ) : this.props.ingredients ? (
-      <>
-        <Burger ingredients={this.props.ingredients} />
-        <BuildControls
-          ingredients={this.props.ingredients}
-          addIngredient={this.props.addIngredient}
-          removeIngredient={this.props.removeIngredient}
-          totalPrice={this.props.totalPrice}
-          // updatePurchasable gets called every time this is re-rendered
-          purchasable={this.updatePurchasable()}
-          startOrder={this.startOrder}
-          isAuthenticated={this.props.isAuthenticated}
-        />
-      </>
-    ) : null;
-    const orderSummary = this.props.ingredients ? (
-      <Modal show={this.state.ordering} closeModal={this.cancelOrder}>
-        <OrderSummary
-          ingredients={this.props.ingredients}
-          continueOrder={this.continueOrder}
-          cancelOrder={this.cancelOrder}
-          totalPrice={this.props.totalPrice}
-        />
-      </Modal>
-    ) : null;
-    return (
-      <Wrapper {...this.props}>
-        {this.state.fetchingIngredients && <Spinner />}
-        {orderSummary}
-        {burgerAndControls}
-      </Wrapper>
-    );
-  }
-}
+  const burgerAndControls = props.fetchError ? (
+    // TODO: why <p> doesn't work with marginTop style here? other styles like color work though.
+    <div style={{ marginTop: "10em" }}>
+      Ingredients cannot be loaded from the server.
+    </div>
+  ) : props.ingredients ? (
+    <>
+      <Burger ingredients={props.ingredients} />
+      <BuildControls
+        ingredients={props.ingredients}
+        addIngredient={props.addIngredient}
+        removeIngredient={props.removeIngredient}
+        totalPrice={props.totalPrice}
+        // updatePurchasable gets called every time this is re-rendered
+        purchasable={updatePurchasable()}
+        startOrder={startOrder}
+        isAuthenticated={props.isAuthenticated}
+      />
+    </>
+  ) : null;
+  const orderSummary = props.ingredients ? (
+    <Modal show={ordering} closeModal={cancelOrder}>
+      <OrderSummary
+        ingredients={props.ingredients}
+        continueOrder={continueOrder}
+        cancelOrder={cancelOrder}
+        totalPrice={props.totalPrice}
+      />
+    </Modal>
+  ) : null;
+  return (
+    <Wrapper {...props}>
+      {fetchingIngredients && <Spinner />}
+      {orderSummary}
+      {burgerAndControls}
+    </Wrapper>
+  );
+};
 
 export default withErrorHandler(BurgerBuilder, axios);
