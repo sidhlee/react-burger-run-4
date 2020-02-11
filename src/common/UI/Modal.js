@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import Backdrop from "./Backdrop";
 
@@ -25,26 +25,19 @@ const StyledModal = styled.div`
   }
 `;
 
-class Modal extends Component {
-  // don't update Modal and its children when users can't see it.
-  shouldComponentUpdate(nextProps, nextState) {
-    const trueOrFalse = nextProps.show !== this.props.show;
-    return trueOrFalse;
-  }
+const Modal = props => {
+  return (
+    <>
+      <Backdrop show={props.show} clicked={props.closeModal} />
+      <StyledModal {...props}>{props.children}</StyledModal>
+    </>
+  );
+};
 
-  render() {
-    return (
-      <>
-        <Backdrop
-          show={this.props.show}
-          clicked={this.props.closeModal}
-        />
-        <StyledModal {...this.props}>
-          {this.props.children}
-        </StyledModal>
-      </>
-    );
-  }
-}
-
-export default Modal;
+// Use cached version if diff function returns true
+export default React.memo(
+  Modal,
+  (prevProps, nextProps) =>
+    nextProps.show === prevProps.show &&
+    nextProps.children === prevProps.children
+);
