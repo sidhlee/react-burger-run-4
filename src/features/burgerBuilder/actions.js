@@ -22,7 +22,8 @@ export const removeIngredient = id => ({
 });
 
 export const startOrder = id => ({
-  type: ORDER_STARTED
+  type: ORDER_STARTED,
+  authRedirectPath: "/checkout"
 });
 
 export const resetBuilding = () => ({

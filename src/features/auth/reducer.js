@@ -1,4 +1,5 @@
 import * as types from "./actions";
+import { ORDER_STARTED } from "../burgerBuilder/actions";
 
 const initialState = {
   idToken: null,
@@ -60,6 +61,8 @@ const authReducer = (state = initialState, action) => {
     case types.AUTH_SIGN_OUT:
       return signOut(state, action);
     case types.AUTH_REDIRECT_PATH_SET:
+      return authRedirectPathSet(state, action);
+    case ORDER_STARTED:
       return authRedirectPathSet(state, action);
     default:
       return state;

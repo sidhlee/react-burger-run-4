@@ -27,7 +27,8 @@ const ingredientAdded = (state, action) => {
   return {
     ...state,
     ingredients: updatedIngredients,
-    totalPrice: updatedTotalPrice
+    totalPrice: updatedTotalPrice,
+    building: true
   };
 };
 const ingredientRemoved = (state, action) => {
@@ -43,7 +44,8 @@ const ingredientRemoved = (state, action) => {
   return {
     ...state,
     ingredients: updatedIngredients,
-    totalPrice: updatedTotalPrice
+    totalPrice: updatedTotalPrice,
+    building: true
   };
 };
 const fetchIngredientsSuccess = (state, action) => {
@@ -57,7 +59,8 @@ const fetchIngredientsSuccess = (state, action) => {
       beef: action.ingredients.beef
     },
     fetchIngredientsSuccess: false,
-    totalPrice: 4.99
+    totalPrice: 4.99,
+    building: false
   };
 };
 

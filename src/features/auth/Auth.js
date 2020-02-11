@@ -64,15 +64,12 @@ const Auth = props => {
     resetBuilding
   } = props;
   useEffect(() => {
-    // reset redirect path if user is not building OR it's already "/"
-    // We're always redirected to the root unless building.
-    if (!building && authRedirectPath !== "/") {
+    // if the user came to auth page by clicking order button in burger-builder page,
+    // building is true and redirect path is set to "/checkout"
+    if (!building) {
+      // if the user came to the auth page by clicking "sign in" link
+      // send them back to burger-builder page
       setAuthRedirectPath("/");
-    } else {
-      // will reset building status to false every time auth page is visited
-      // But the redirect path set previously will not change
-      // (e.g. It is set to "/checkout" when user clicks order button on root page.
-      //  But if the user clicks on the link to come to auth page, they'll be redirected to "/" )
       resetBuilding();
     }
   }, [
