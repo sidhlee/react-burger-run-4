@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Toolbar from "./toolbar/Toolbar";
 import SideDrawer from "./SideDrawer";
@@ -11,35 +11,32 @@ const StyledContent = styled.main`
   margin-top: 50px;
 `;
 
-class Layout extends Component {
-  state = {
-    sideDrawerOpened: false
+const Layout = props => {
+  const [sideDrawerOpened, setSideDrawerOpened] = useState(false);
+
+  const closeSideDrawer = () => {
+    setSideDrawerOpened(false);
+  };
+  const toggleSideDrawer = () => {
+    setSideDrawerOpened(
+      prevSideDrawerOpened => !prevSideDrawerOpened
+    );
   };
 
-  closeSideDrawer = () => {
-    this.setState({ sideDrawerOpened: false });
-  };
-  toggleSideDrawer = () => {
-    this.setState(prevState => ({
-      sideDrawerOpened: !prevState.sideDrawerOpened
-    }));
-  };
-  render() {
-    return (
-      <StyledLayout>
-        <Toolbar
-          isAuthenticated={this.props.isAuthenticated}
-          toggleSideDrawer={this.toggleSideDrawer}
-        />
-        <SideDrawer
-          isAuthenticated={this.props.isAuthenticated}
-          closeSideDrawer={this.closeSideDrawer}
-          sideDrawerOpened={this.state.sideDrawerOpened}
-        />
-        <StyledContent>{this.props.children}</StyledContent>
-      </StyledLayout>
-    );
-  }
-}
+  return (
+    <StyledLayout>
+      <Toolbar
+        isAuthenticated={props.isAuthenticated}
+        toggleSideDrawer={toggleSideDrawer}
+      />
+      <SideDrawer
+        isAuthenticated={props.isAuthenticated}
+        closeSideDrawer={closeSideDrawer}
+        sideDrawerOpened={sideDrawerOpened}
+      />
+      <StyledContent>{props.children}</StyledContent>
+    </StyledLayout>
+  );
+};
 
 export default Layout;

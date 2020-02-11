@@ -21,8 +21,8 @@ describe("<BuildControls />", () => {
   });
 
   // TODO: Learn testing nested components
-  // it("should contain <OrderButton>Order Now</OrderButton> if authenticated", () => {
-  //   wrapper.setProps({ isAuthenticated: true });
-  //   expect(wrapper.text()).toEqual("Order Now");
-  // });
-});
+//   it("should contain <OrderButton>Order Now</OrderButton> if authenticated", () => {
+//     wrapper.setProps({ isAuthenticated: true });
+//     expect(wrapper.find(OrderButton).children()).toEqual("Order Now");
+//   });
+// });
