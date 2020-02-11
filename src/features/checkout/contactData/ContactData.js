@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Button from "../../../common/UI/Button";
 import axios from "../../../common/axios-orders";
@@ -114,6 +114,16 @@ const ContactData = props => {
   const [ordering, setOrdering] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
+  // useEffect is a perfect place to put validation logic based on changing state!
+  useEffect(() => {
+    // return false if ANY of the input is invalid
+    const isValid = Object.keys(orderForm).reduce((bool, id) => {
+      bool = orderForm[id].valid && bool;
+      return bool;
+    }, true);
+    setIsFormValid(isValid);
+  }, [orderForm]);
+
   const orderBurger = e => {
     e.preventDefault();
     setOrdering(true);
@@ -151,16 +161,6 @@ const ContactData = props => {
     input.valid = checkValidity(input.value, input.validation);
 
     setOrderForm(updatedOrderForm);
-
-    // return false if ANY of the input is invalid
-    const isValid = Object.keys(updatedOrderForm).reduce(
-      (bool, id) => {
-        bool = orderForm[id].valid && bool;
-        return bool;
-      },
-      true
-    );
-    setIsFormValid(isValid);
   };
 
   const inputObjects = Object.keys(orderForm).map(input => ({
