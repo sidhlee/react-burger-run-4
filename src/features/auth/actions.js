@@ -51,8 +51,8 @@ export const auth = (email, password, isSignIn) => {
       returnSecureToken: true
     };
     const uri = isSignIn
-      ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAT3EDo3l5ZfUmYgM-9M0uQaseNX8TW0HI"
-      : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAT3EDo3l5ZfUmYgM-9M0uQaseNX8TW0HI";
+      ? "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=~W0HI"
+      : "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=~W0HI";
     return axios
       .post(uri, payload)
       .then(res => {
